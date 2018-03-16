@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title> Books </title>
+    <meta charset="utf-8">
+    <script>
+
+        function Book(title, author) {
+            this.title = title;
+            this.author = author;
+
+            this.display = function() {
+                console.log(this.title + ", by " + this.author);
+            };
+
+           Book.numBooks++;
+        }
+
+        Book.numBooks = 0;
+
+        var book1 = new Book("The Adventures of Sherlock Holmes", "Sir Arthur Conan Doyle");
+        var book2 = new Book("The Hound of the Baskervilles", "Sir Arthur Conan Doyle");
+        var book3 = new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling");
+
+        console.log("Number of books: " + Book.numBooks);
+
+    </script>
+</head>
+<body>
+</body>
+</html>    

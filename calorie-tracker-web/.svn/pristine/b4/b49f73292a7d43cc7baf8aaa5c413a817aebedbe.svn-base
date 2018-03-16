@@ -1,0 +1,103 @@
+define(['jquery', 'bootstrap'], function ($) {
+    'use strict';
+
+    var storage = (function() {
+
+        var intakeItems = [];
+        var keyPrefix = "intake";
+
+        function getUniqueId() {
+            var millis = new Date().getTime();
+            var random = Math.floor((Math.random() * 100) + 1);
+
+            return millis + random;
+        }
+
+        function Serving(meal,description,quantity,unit,calories){
+            this.meal = meal;
+            this.description = description;
+            this.quantity = quantity;
+            this.unit = unit;
+            this.calories = calories;
+        }
+
+        function DailyIntake(id,date,servings,total,limit,diff) {
+            this.id = id;
+            this.key = keyPrefix + id;
+            this.date = date;
+            this.servings = servings;
+            this.totalCalories = total;
+            this.calorieLimit = limit;
+            this.calorieDiff = diff;
+        }
+
+        var add = function (item) {
+            console.log("storage.add: called");
+
+            var key = item.key;
+            var JSonItem = JSON.stringify(item);
+            localStorage.setItem(key, JSonItem);
+
+            console.log("storage.add: added item with key " + item.key);
+
+        };
+
+        var remove = function (key) {
+            console.log("storage.remove: called");
+
+            localStorage.removeItem(key);
+
+            console.log("storage.remove: removed item with key " + key + " from local storage");
+
+        };
+
+        var get = function(key) {
+            var JSonItem = localStorage.getItem(key);
+            var item = JSON.parse(JSonItem);
+
+            return new DailyIntake(item.id,item.date,item.servings,item.total,item.limit,item.diff);
+        };
+
+        var getAll = function () {
+            console.log("storage.getAll: called");
+
+            intakeItems = [];
+
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                if (key.substring(0, keyPrefix.length) == keyPrefix) {
+                    var JSonItem = localStorage.getItem(key);
+                    var item = JSON.parse(JSonItem);
+
+                    console.log("storage.getAll: retrieved item " + item.id);
+
+                    var intakeItem = new DailyIntake(item.id,item.date,item.servings,item.total,item.limit,item.diff);
+                    intakeItems.push(intakeItem);
+                }
+            }
+
+            console.log("storage.getAll: retrieved " + intakeItems.length + " daily intake items from local storage");
+
+            return intakeItems;
+        };
+
+        var createServing = function(date,meal,description,quantity,unit,calories) {
+            console.log("storage.createServings: called");
+            return new Serving(date,meal,description,quantity,unit,calories);
+        }
+
+        var createDailyIntake = function() {
+
+        }
+
+        return {
+            create: create,
+            add: add,
+            remove: remove,
+            get: get,
+            getAll: getAll
+        }
+    })();
+
+
+});

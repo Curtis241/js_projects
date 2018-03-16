@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+    <title> Shopping Basket: Module Pattern </title>
+    <meta charset="utf-8">
+    <script>
+        var basket = (function() {
+            var basket = {};
+            var items = [];
+
+            //
+            // Add a new item to the basket.
+            // If item already exists, increase the count of existing item.
+            // Returns: number of that item in the basket.
+            //
+            function addItem(item, cost) {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].name == item) {
+                        items[i].count++;
+                        return items[i].count;
+                    }
+                }
+                items.push({ name: item, price: cost, count: 1 });
+                return 1;
+            }
+
+            //
+            // Remove an item from the basket
+            // If item has more than 1 in basket, reduce count.
+            // If no more items left after removing one, remove item completely.
+            // Returns: number of that item left or -1 if item you tried
+            //   to remove doesn't exist.
+            //
+            function removeItem(item) {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].name == item) {
+                        items[i].count--;
+                        if (items[i].count == 0) {
+                            items.splice(i, 1);
+                            return 0;
+                        }
+                        return items[i].count;
+                    }
+                }
+                return -1;
+            }
+
+            //
+            // Compute the total cost of items in the basket.
+            //
+            function cost() {
+                var total = 0;
+                for (var i = 0; i < items.length; i++) {
+                    total += items[i].price * items[i].count;
+                }
+                return total;
+            }
+
+            basket.addItem = function(item, cost) {
+                var count = addItem(item, cost);
+                console.log("You have " + count + " of " + item + " in your basket.");
+            };
+            basket.removeItem = function(item) {
+                var count = removeItem(item);
+                if (count >= 0) {
+                    console.log("You have " + count + " of " + item + " left in your basket.");
+                } else {
+                    console.log("Sorry, couldn't find " + item + " in your basket to remove.");
+                }
+            };
+            basket.cost = function() {
+                var totalCost = cost();
+                console.log("Your total cost is: " + totalCost);
+            };
+            basket.show = function() {
+                console.log("====== Shopping Basket =========");
+                for (var i = 0; i < items.length; i++) {
+                    console.log(items[i].count + " " + items[i].name + ", " + (items[i].price * items[i].count));
+                }
+                console.log(" ");
+            };
+
+            return basket;
+        })();
+
+        window.onload = function() {
+            basket.addItem("broccoli", 1.49);
+            basket.addItem("pear", 0.89);
+            basket.addItem("kale", 2.38);
+            basket.addItem("broccoli", 1.49);
+            basket.show();
+
+            basket.cost();
+
+            basket.removeItem("broccoli");
+
+            basket.cost();
+        };
+
+    </script>
+</head>
+<body>
+</body>
+</html>      

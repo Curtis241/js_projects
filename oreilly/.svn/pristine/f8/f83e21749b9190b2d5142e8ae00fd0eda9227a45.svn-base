@@ -1,0 +1,186 @@
+Objective 3:
+
+For this project, you'll build on the project in the previous lesson (modifyFunction()) to create a new function
+that allows you to change an object's methods so that they can be chained.
+If a method returns undefined, your function will change that method so it returns this,
+the object on which the method is being invoked.
+
+Write a new function modifyMethod() that takes an object, o, and the name of a method (as a string),
+m and replaces the method m in o with a new method that does the same thing, except returns the object o instead of undefined.
+If the method already returns a value, return that value. But if the method does not already return a value,
+return the object the method is in (this) instead.
+
+By modifying the object's methods to return the object instead of undefined, you can then chain that object's methods.
+
+You can start with this code:
+
+<!doctype html>
+<html>
+<head>
+  <title> Make an object's methods chainable </title>
+  <meta charset="utf-8">
+  <script>
+
+function modifyFunction(f) {
+    return function() {
+        var returnValue = f.apply(this, arguments);
+
+        if (returnValue == undefined) {
+            return this;
+        } else {
+            return returnValue;
+        }
+    };
+}
+
+function modifyMethod(o, m) {
+    // your code here
+}   
+
+var o = {
+    num: 0,
+    add: function(x) {
+        this.num += x;
+    },
+    sub: function(x) {
+        this.num -= x;
+    }
+};
+
+// We can't chain object o's method because they don't return "this"
+//o.add(4).sub(2); // fail - the methods aren't chainable yet!
+
+// Make the add method chainable.
+modifyMethod(o, "add");
+
+// Now we can chain the add methods
+o.add(2).add(4);
+console.log(o.num); // o.num = 6
+
+// Now make the sub method chainable
+modifyMethod(o, "sub");
+
+// Now we can chain both the sub and add methods
+o.sub(1).add(3).sub(5);
+console.log(o.num);  // o.num = 3
+
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+For testing, you can use the object o defined in the code above (but feel free to test on your own objects too!).
+Notice that, initially, the methods in o are not chainable because they don't return this.
+So if you write o.add(4).sub(2), your code will fail because o.add(4) returns undefined,
+and you can't call the method sub(2) on undefined.
+
+Before you modify the method in o to return this, the modifyMethod() function should do two things:
+first, make sure that the object o has a property with the name you pass in as the second argument
+(that is, verify that "add" is a valid property of o); second, make sure that the property you specify is
+actually a function and not some other kind of value.
+
+Hint: Remember hasOwnProperty() and instanceof from earlier lessons.
+
+Hint 2: use the console to display the constructor of the object's methods to determine what type to check for
+when checking to make sure the method name you pass in really is a method:
+
+> o.add.constructor
+
+Also, remember that you can access an object's properties using the bracket notation. So, if you know an object has
+a property "x," you can access it like this:
+
+var myObject = {
+   x: 1,
+   y: 2
+};
+myObject["x"] = 99;
+console.log(myObject["x"]);          
+
+You'll be using modifyFunction() as a helper in your solution. Think carefully about what happens to this when
+you call the method of the object after you've modified it with modifyMethod().
+
+Save the file in your /AdvJS folder as chainable.html. Comment your code liberally! When the project is working to
+your satisfaction, hand in chainable.html
+
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right.
+If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and
+click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter
+any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

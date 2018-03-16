@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Calorie Tracker - Main</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="js/app/model.js"></script>
+    <script src="js/app/session.js"></script>
+    <script src="js/app/view.js"></script>
+    <script src="js/app/mainController.js"></script>
+    <script src="js/app/mainView.js"></script>
+    <script>
+        window.onload = function() {
+            var auth = session.isAuthenticated();
+            if (!auth) {
+                window.location = "index.html"
+            }
+
+            var saveButton = document.getElementById("saveButton");
+            saveButton.onclick = mainView.saveButtonClickHandler;
+
+            var searchButton = document.getElementById("searchByDateButton");
+            searchButton.onclick = mainView.searchButtonClickHandler;
+
+            //Displays the the Welcome message on the main page if user has registered and logged in.
+            view.setInputText("helloMessage", "Welcome " + session.getName());
+            //Add a default date to the date text box.
+            view.setInputText("inputDate", model.getDate());
+
+            mainView.initialize();
+        }
+    </script>
+</head>
+<body>
+    <div id="banner" class="media-body">
+        <img id="bannerImg" class="media-right" src="img/banner.jpg">
+    </div>
+    <hr id="bannerSeparator"/>
+    <div id="statusBar" class="col-sm-12">
+        <div class="col-sm-12"></div>
+        <label id="helloMessage" class="pull-left"></label>
+        <a id="logoutLink" class="pull-right" style="color:white" href="index.html">Logout</a>
+    </div>
+    <div id="mainContent">
+        <div id="mainFoodDisplay">
+            <div id="foodInformationForm" class="col-md-offset-1 col-md-2 panel panel-default panel-primary">
+                <div class="panel-heading">Food Information</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <form class="form-group">
+                            <div id="errorDiv" class="alert" role="alert"></div>
+                            <input type="date" id="inputDate" placeholder="Date" class="form-control input-sm">
+                            <select id="mealDropDown" class="form-control input-sm">
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                                <option>Snack</option>
+                            </select>
+                            <input type="text" id="inputDescription" placeholder="Description" class="form-control input-sm">
+                            <input type="text" id="inputQuantity" placeholder="Quantity" class="form-control input-sm">
+                           <!-- <input type="text" id="inputUnit" placeholder="Unit" class="form-control input-sm">-->
+                            <select id="unitDropDown" class="form-control input-sm">
+                                <option>Serving</option>
+                                <option>ml</option>
+                                <option>grams</option>
+                            </select>
+                            <input type="text" id="inputCalories" placeholder="Calories" class="form-control input-sm">
+                            </br>
+                            <button id="saveButton" type="button" class="btn btn-primary col-md-offset-8">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="dailySummaryTable" class="col-md-offset-1 col-md-7 panel panel-default panel-primary">
+                <div class="panel-heading">Daily Summary</div>
+                <div class="panel-body">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <button id="btnTotalCalories" class="btn btn-primary" type="button">
+                                Total Calories <span id="spanTotalCalories" class="badge">0</span>
+                            </button>
+                        </div>
+                        <div id="btnCalorieLimit" class="form-group">
+                            <button class="btn btn-primary" type="button">
+                                Calorie Limit <span id="spanCalorieLimit" class="badge">0</span>
+                            </button>
+                        </div>
+                        <div id="btnCalorieDiff" class="form-group">
+                            <button class="btn btn-primary" type="button">
+                                Calorie Diff <span id="spanCalorieDiff" class="badge">0</span>
+                            </button>
+                        </div>
+                        <div class="form-group pull-right">
+                            <input type="date" id="inputSearchByDate" placeholder="Date" class="form-control input-sm">
+                            <button id="searchByDateButton" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                    </br>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Meal</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Calories</th>
+                        </tr>
+                        </thead>
+                        <tbody id="summaryTableRows">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <nav class="pull-left">
+                        <ul class="pagination" id="paginator">
+                            <li id="previous" class="disabled">
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li id="page1" class="disabled"><a href="#">1</a></li>
+                            <li id="page2" class="disabled hidden"><a href="#">2</a></li>
+                            <li id="page3" class="disabled hidden"><a href="#">3</a></li>
+                            <li id="page4" class="disabled hidden"><a href="#">4</a></li>
+                            <li id="page5" class="disabled hidden"><a href="#">5</a></li>
+                            <li id="next" class="disabled">
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿<!--"id":1,"name":"id001","x":9,"y":15,"heartrate":80,"temperature":37,"direction":288,"speed":0,"distance":12-->
+<section>
+    <br/>
+    <br/>
+    <div class="panel panel-default col-md-8">
+        <div class="panel-body">
+
+                <table class="table table-condensed table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-left ">Dog Id</th>
+                            <th>Position (x,y)</th>
+                            <th>Heart Rate</th>
+                            <th>Temperature</th>
+                            <th>Direction (degrees)</th>
+                            <th>Speed (m/s)</th>
+                            <th>Distance (m)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: sensors">
+                        <tr>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: position"></td>
+                            <td data-bind="text: heartrate"></td>
+                            <td data-bind="text: temperature"></td>
+                            <td data-bind="text: direction"></td>
+                            <td data-bind="text: speed"></td>
+                            <td data-bind="text: distance"></td>
+                            <td><button class="btn btn-xs btn-primary" type="submit">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <form class="form-inline pull-right">
+                <button data-bind="click: addClientClickEvent" id="addClientButton" class="btn btn-primary" type="click">Add Client</button>
+                <button data-bind="click: updateClickEvent" id="updateButton" class="btn btn-primary" type="click">Update</button>
+            </form>
+                <nav>
+                    <ul class="pagination" data-bind="visible isPaginationVisible">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</section>

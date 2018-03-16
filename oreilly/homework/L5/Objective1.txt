@@ -1,0 +1,108 @@
+Objective 1:
+
+Write a program that uses one constructor, Book(), to create book objects with the following properties: genre, title, author, published (the year it was published),
+and hasMovie (a boolean indicating if the book has been made into a movie or tv show), display() (a method that displays the object in the console), and toString()
+(a method that returns a string describing the book).
+
+Create a window.onload handler function that creates an array of book objects, and then adds each book to the page using the addToPage() function (below).
+Create a new file, books1.html, in your /AdvJS folder and use the following HTML and JavaScript to get started:
+
+<!doctype html>
+<html>
+<head>
+  <title> Object Prototypes Project : Books, 1 </title>
+  <meta charset="utf-8">
+  <style>
+    .mystery {
+      background-color: rosybrown;
+    }
+    .biography {
+      background-color: mistyrose;
+    }
+  </style>
+  <script>
+  
+    // your code here for the Book() constructor
+
+
+    window.onload = function() {
+        var books = [ ];
+        // your code here to create the books and call addToPage()
+    };
+
+    function addToPage(book) {
+        var booksList = document.getElementById("books");
+        var bookItem = document.createElement("li");
+
+        // your code here to figure out how which class to add to the book
+        // you can use: bookItem.setAttribute("class", "mystery") to add the mystery class
+        // and: bookItem.setAttribute("class", "biography") to add the biography class
+                
+        bookItem.innerHTML = book.toString();
+        booksList.appendChild(bookItem);
+    }  
+  </script>
+</head>
+<body>
+<ul id="books">
+</ul>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as books1.html. When the project is working to your satisfaction, hand in books1.html
+
+Feel free to add more types of books other than mystery and biography!
+
+Something to think about as you work on this project: Which of the properties did you create using the Book() constructor and which did you add to the Book.prototype?
+Think carefully about which properties belong where and why.
+
+
+
+<!DOCTYPE html><html lang="en"><body><script>
+var Person = function(){this.bar = 'bar'};
+Person.prototype.foo = 'foo';
+var Chef = function(){this.goo = 'goo'};
+Chef.prototype = new Person();
+var cody = new Chef();
+console.log(cody.foo); // logs 'foo'
+console.log(cody.goo); // logs 'goo'
+console.log(cody.bar); // logs 'bar'
+</script></body></html>
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

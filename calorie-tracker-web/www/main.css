@@ -1,0 +1,51 @@
+body {
+    width: 100%;
+}
+
+div#loginContent {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    bottom: 40%;
+    right: 0;
+    margin: auto;
+}
+
+div#registrationContent {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    bottom: 10%;
+    right: 0;
+    margin: auto;
+}
+
+div#mainContent  {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    bottom: 10%;
+    right: 0;
+    margin: auto;
+}
+
+div#banner {
+    background-color: #2e6da4;
+}
+
+hr {
+    border:0 !important;
+    margin-top:0 !important;
+    margin-bottom:1px !important;
+    height: 1px;
+}
+
+div#statusBar {
+    color: white;
+    background-color: #5e5e5e;
+    height: 25px;
+}
+
+div#pageHeader {
+    background-color: #2aabd2;
+}

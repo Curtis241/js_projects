@@ -1,0 +1,114 @@
+Objective 1:
+
+Write a function that takes one or more arguments and turns them into an HTML list. The first argument to the function will be the kind of list you are making (that is, a <ul> or a <ol> list), and all the rest of the arguments will be the list items (that, is the strings that will go into <li> elements).
+
+For example, I might call this function like this:
+
+makeList("ul", "apples", "oranges", "pears");
+
+and get this result:
+
+<ul><li>apples</li><li>oranges</li><li>pears</li></ul>        
+
+You can start with this skeleton code:
+
+<!doctype html>
+<html>
+<head>
+  <title> Make an HTML list </title>
+  <meta charset="utf-8">
+  <script>
+
+    // your code here
+    
+    window.onload = function() {
+        var list = makeList("ul", "apples", "oranges", "pears");
+        var theListDiv = document.getElementById("theList");
+        theListDiv.innerHTML = list;
+    }
+  </script>
+</head>
+<body>
+  <div id="theList"></div>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as makeList.html. Comment your code liberally! When the project is working to your satisfaction, hand in makeList.html
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title> Advanced JavaScript Project: Constructing Array Objects </title>
+    <meta charset="utf-8">
+    <script>
+
+        //Creates an array, myArray
+        var myArray = [];
+
+        //Adds named property to the array, myArray: name. name is a string property with a short name for the array.
+        myArray.name = "short name";
+
+       //Adds named property to the array, myArray: list(). list() is a method that uses a for loop
+       // and the array indices to loop through the array and display all the values in the array.
+        myArray.list = function() {
+            for(var i = 0; i < this.length;i++) {
+               console.log(this[i])
+            }
+        };
+
+        //Implements a function, displayArray(), that takes an array,
+        // and displays all the properties of the array object using a for/in loop and bracket notation.
+        function displayArray(array) {
+            for(var prop in array) {
+                console.log(array[prop]);
+            }
+        }
+
+        window.onload = function() {
+            //Add some some values
+            myArray.push("Apple");
+            myArray.push("Orange");
+            myArray.push("Grape");
+            myArray.push("Strawberry");
+            myArray.push("Blueberry");
+            myArray.push("Watermelon");
+
+            //Display the array in the console using console.log(myArray).
+            console.log(myArray);
+
+            //Show how you call the list() method to display the values in the array.
+            myArray.list();
+
+        };
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>  

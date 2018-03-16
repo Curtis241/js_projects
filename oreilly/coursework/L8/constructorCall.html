@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Calling a function as a constructor </title>
+    <style>
+        .square {
+            background-color: lightblue;
+            cursor: pointer;
+        }
+        .circle {
+            background-color: orange;
+            cursor: pointer;
+        }
+        .square p, .circle p {
+            padding-top: 35%;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script>
+        function Square(id,name,size){
+            this.id = id;
+            this.name = name;
+            this.size = size;
+            this.display = function() {
+                var el = document.getElementById(this.id);
+                el.style.width = this.size + "px";
+                el.style.height = this.size + "px";
+                el.innerHTML = "<p>" + this.name + "</p>";
+                console.log(this.name + " has size " + this.size + ", and is a " + this.constructor.name);
+            };
+        }
+        window.onload = function() {
+            var square = new Square("s1", "square one", 100);
+            square.display();
+        }
+    </script>
+</head>
+<body>
+    <div id="s1" class="square"></div>
+</body>
+</html>

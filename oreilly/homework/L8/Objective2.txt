@@ -1,0 +1,129 @@
+Objective 2:
+
+For this project, you're going to practice function invocation. You'll also be using the solution later.
+
+Write a function, modifyFunction(), that takes a function, f, and returns a new function that executes f(). If f() returns undefined, then the new function should return this; otherwise, the new function should return whatever f() returns.
+
+You can start with this skeleton
+
+<!doctype html>
+<html>
+<head>
+  <title> Modifying functions </title>
+  <meta charset="utf-8">
+  <script>
+
+function modifyFunction(f) {
+
+    return function() {
+        
+        // your code here
+        
+    };
+
+}
+
+function add1(num1, num2) {
+    return num1 + num2;
+}
+
+function add2(num1, num2, num3) {
+    var num4 = num1 + num2 + num3;
+    // don't return anything
+}
+
+var add1New = modifyFunction(add1);
+console.log(add1New(1, 2)); // should display 3
+
+var add2New = modifyFunction(add2);
+console.log(add2New(3, 4, 5)); // should display this (the window object)
+
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Test your function using the code provided. For testing, we create two new functions using the modifyFunction(). add1() takes two numbers and returns a number, so add1New() should also return a number. However, add2() takes two numbers and doesn't return anything (meaning, it returns undefined), so add2New() should return this, which in this case will be the window object.
+
+Notice that f, the function you pass to modifyFunction(), f(), could be a function with any number of arguments, so when you call the new function created in modifyFunction(), you'll be passing the arguments you would have passed to f() to this new function instead. Hint: You can pass the arguments object as the second parameter to apply(). Even though arguments is only array-like, it works in this case (that is, apply() will treat it as an array of arguments correctly).
+
+Save the file in your /AdvJS folder as modifyFunction.html. Comment your code liberally! When the project is working to your satisfaction, hand in modifyFunction.html.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

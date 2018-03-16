@@ -1,0 +1,58 @@
+body {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.previewOverlay {
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 77%;
+    height: 78%;
+}
+.previewOverlay img {
+    position: relative;
+    border: 20px solid white;
+    border-radius: 10px;
+    top: 50px;
+    left: 50px;
+}
+.close {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #fdfdfd;
+    font-size: 50px;
+    text-shadow: 0px 0px 5px black;
+}
+.close:after {
+    content: "\2717";
+}
+.close:hover {
+    color: orange;
+}
+
+button {
+    width: 154px;
+}
+
+ul#nav {
+    position: absolute;
+    top: 50px;
+    width: 175px;
+}
+
+img {
+    top: 10px;
+    left: 5px;
+    border: 10px solid white;
+    cursor: pointer;
+}
+
+img.invisible {
+    display:none;
+}
+
+img.visible {
+    display:inline;
+}
+

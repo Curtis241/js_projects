@@ -1,0 +1,179 @@
+Objective 1:
+
+In this project, you'll build a very simple music game. We've begun the code for you below; you just need to finish it up (and perhaps, clean it up a bit too!).
+
+The game works like this: you click on note buttons to create a chord. Each time you click on a note, add the note to the "notesDisplay" (an input text area).
+After three notes, the code should check to see if the string you've entered is a valid major chord (we won't use sharps and flats for this project,
+so the only valid chords for our purposes are C, F, and G, though you could add more). After checking, it should display a message in the
+"message" <div> (replacing the existing text), and reset the form for the next chord.
+
+The goal for this project is to think about how to organize your code, and as you build it, to understand the scope of each function and variable you use.
+Comment your code to briefly describe your organization decisions, as well as the scope of the key variables and functions.
+
+<!doctype html>
+<html>
+<head>
+  <title> Scope </title>
+  <meta charset="utf-8">
+  <style>
+    html {
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        margin: 0px;
+        font-family: Helvetica, sans-serif;
+    }
+    div#container {
+        margin: auto;
+        width: 300px;
+    }
+    form {
+        margin-top: 20%;
+    }
+    form input[type="text"] {
+        font-size: 120%;
+        text-align: center;
+    }
+    form input[type="button"] {
+        background-color: lightblue;
+        font-size: 110%;
+    }
+  </style>
+  <script>
+function addNote(event) {
+
+    var validChords = {
+        C: "CEG",
+        F: "FAC",
+        G: "GBD"
+    };
+
+    var note = event.target.value;
+    // your code here
+}              
+             
+window.onload = function() {
+    var notes = ["C", "D", "E", "F", "G", "A", "B"];
+    
+    var cButton = document.getElementById("c");
+    cButton.onclick = addNote;
+    var dButton = document.getElementById("d");
+    dButton.onclick = addNote;
+    var eButton = document.getElementById("e");
+    eButton.onclick = addNote;
+    var fButton = document.getElementById("f");
+    fButton.onclick = addNote;
+    var gButton = document.getElementById("g");
+    gButton.onclick = addNote;
+    var aButton = document.getElementById("a");
+    aButton.onclick = addNote;
+    var bButton = document.getElementById("b");
+    bButton.onclick = addNote;
+    
+    // your code here
+}  
+  </script>
+</head>
+<body>
+<div id="container">
+<form>
+<p id="message">Enter a major triad chord:</p>
+<p>
+    <input id="notesDisplay" type="text" size="21">
+</p>
+<p>
+    <input id="c" type="button" value="C">
+    <input id="d" type="button" value="D">
+    <input id="e" type="button" value="E">
+    <input id="f" type="button" value="F">
+    <input id="g" type="button" value="G">
+    <input id="a" type="button" value="A">
+    <input id="b" type="button" value="B">
+</p>
+</form>
+</div>
+</body>
+</html>         
+
+Save the file in your /AdvJS folder as notesGame.html. Here is what the screen will look like after you enter a valid chord, before the form is reset for the next chord:
+
+After completing the project, turn in the file notesGame.html.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

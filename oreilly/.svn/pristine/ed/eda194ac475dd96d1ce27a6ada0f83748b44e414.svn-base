@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <title> Object Prototypes Project : Books, 1 </title>
+    <meta charset="utf-8">
+    <style>
+        .mystery {
+            background-color: rosybrown;
+        }
+        .biography {
+            background-color: mistyrose;
+        }
+    </style>
+    <script>
+
+        //I added all properties and methods to the Book object because there is only type of book at this point that
+        //is differentiated by the genre.
+        function Book(genre, title, author, published, hasMovie) {
+            this.genre = genre;
+            this.title = (title == undefined ? "default title" : title);
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+        }
+
+        Book.prototype.display = function() {
+            console.log(JSON.stringify(this));
+        };
+
+        Book.prototype.toString  = function() {
+            return "Title: " + this.title + ", Author: " + this.author + ", Genre: " + this.genre + ", Published: " + this.published + ", Has Movie: " + this.hasMovie;
+        };
+
+
+        window.onload = function() {
+            var books = [ ];
+
+            books.push(new Book("mystery","Where's Waldo?","Martin Handford",1987,false));
+            books.push(new Book("biography","The Cat in the Hat","Dr. Suess", 1957,true));
+
+            for(var i = 0; i < books.length; i++) {
+               addToPage(books[i]);
+            }
+        };
+
+        function addToPage(book) {
+            var booksList = document.getElementById("books");
+            var bookItem = document.createElement("li");
+
+            //No need to figure out what class to add because the genre property is set in the Book constructor
+            //which matches the CSS class which then added.
+            bookItem.setAttribute("class", book.genre);
+            bookItem.innerHTML = book.toString();
+            booksList.appendChild(bookItem);
+        }
+    </script>
+</head>
+<body>
+<ul id="books">
+</ul>
+</body>
+</html>      

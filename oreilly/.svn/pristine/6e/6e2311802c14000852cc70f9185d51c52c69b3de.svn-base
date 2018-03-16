@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Returning Functions </title>
+    <script>
+        function makeConverterFunction(multiplier, term) {
+            return function(input) {
+                var convertedValue = input * multiplier;
+                convertedValue = convertedValue.toFixed(2);
+                return convertedValue + " " + term;
+            };
+        }
+
+        var kilometersToMiles = makeConverterFunction(0.6214, "miles");
+        console.log("10 km is " + kilometersToMiles(10));
+
+        var milesToKilometers = makeConverterFunction(1.62, "km");
+        console.log("10 miles is " + milesToKilometers(10));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

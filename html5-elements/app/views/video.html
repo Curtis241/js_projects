@@ -1,0 +1,37 @@
+<section>
+    <div class="page-header">
+        <form id="videoControls">
+            <button type="button" class="btn btn-primary" data-bind="click: playClickEvent">
+                <i class="fa fa-play"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: pauseClickEvent">
+                <i class="fa fa-pause"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: forwardPlayClickEvent">
+                <i class="fa fa-forward"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: backwardPlayClickEvent">
+                <i class="fa fa-backward"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: incrementVolumeClickEvent">
+                <i class="fa fa-volume-up"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: decrementVolumeClickEvent">
+                <i class="fa fa-volume-down"></i>
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: muteVolumeClickEvent">
+                <i class="fa fa-volume-off"></i>
+            </button>
+            <button class="btn btn-primary disabled">
+                <span class="badge" data-bind="text: volume"></span>
+            </button>
+            <input width="300" type="range" maxlength="300" />
+        </form>
+    </div>
+    <video id="videoPlayer" data-bind="VideoControls: canPlayVideo, volume: volumeFloat, forward: enableForwardPlayback, backward: enableBackwardPlayback">
+        <source src="app/media/January_2010.m4v">
+        <source src="app/media/January_2010.mov">
+        <source src="app/media/January_2010.ogv">
+        <source src="app/media/January_2010.webm">
+    </video>
+</section>

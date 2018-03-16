@@ -1,0 +1,5 @@
+define(['jquery','storage','bootstrap'], function ($,storage) {
+    'use strict';
+
+
+});

@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+    <title> Scope </title>
+    <meta charset="utf-8">
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0px;
+            font-family: Helvetica, sans-serif;
+        }
+        div#container {
+            margin: auto;
+            width: 300px;
+        }
+        form {
+            margin-top: 20%;
+        }
+        form input[type="text"] {
+            font-size: 120%;
+            text-align: center;
+        }
+        form input[type="button"] {
+            background-color: lightblue;
+            font-size: 110%;
+        }
+    </style>
+    <script>
+
+        //Scope = Global array
+        //The current selection array needs to be global in scope because
+        //the addNode, displayNotes, and displayResults functions all interact with it.
+        var currentSelection = [];
+
+        //Scope = Global function
+        //Encapsulates the document.getElementById method to make the code more readable.
+        function getNotesDisplayValue() {
+            return document.getElementById("notesDisplay").value;
+        }
+
+        //Scope = Global function
+        //Encapsulates the document.getElementById method to make the code more readable.
+        function setNotesDisplayValue(value) {
+            //Scope = local variable
+            var valuesDiv = document.getElementById("notesDisplay");
+            valuesDiv.value = value;
+        }
+
+        //Scope = Global function
+        function displayResults(enteredChord, isCorrectString) {
+            //Scope = local variable
+            var resultsMessage = document.getElementById("resultsMessage");
+            resultsMessage.innerHTML = enteredChord + " is " + isCorrectString + "! Do you wish to play again?";
+            //Scope = references global array
+            currentSelection = [];
+        }
+
+        //Scope = Global function
+        function addNote(event) {
+
+            //Scope = local object within addNote function.
+            var validChords = {
+                C: "CEG",
+                F: "FAC",
+                G: "GBD"
+            };
+
+            //Scope = local variable withing addNote function.
+            var note = event.target.value;
+            //Scope = references global array
+            currentSelection.push(note);
+            //Scope = calls global function
+            displayNotes();
+
+            if(currentSelection.length == 3) {
+                //Scope = local variable that calls global function.
+                //A local variable is needed to prevent multiple calls to the same function. It is also easier to debug
+                //when the result of the global function is added to a local variable.
+                var enteredChord = getNotesDisplayValue();
+
+                //Scope = validChords is a local variable.
+                for(var validChord in validChords) {
+                    if(enteredChord === validChords[validChord]) {
+                        //Scope = calls global function.
+                        displayResults(enteredChord,"Correct");
+                        return;
+                    }
+                }
+                //Scope = calls global function.
+                displayResults(enteredChord,"Incorrect");
+            }
+        }
+
+        //Scope = Global function
+        function displayNotes() {
+            //Scope = local variable
+            var selectedNotes = "";
+
+            //Scope = references global array
+            for(var i = 0; i < currentSelection.length; i++) {
+                selectedNotes += currentSelection[i];
+            }
+            //Scope = calls global function.
+            setNotesDisplayValue(selectedNotes);
+        }
+
+        //Scope = Global function
+        function makeButtons() {
+
+            //Scope = Local array
+            var notes = ["C", "D", "E", "F", "G", "A", "B"];
+            //Scope = local variable
+            var frag = document.createDocumentFragment();
+
+            for(var i=0;i < notes.length; i++) {
+                //Scope = local variable
+                var note = notes[i];
+                //Scope = local variable
+                var button = document.createElement("input");
+                button.setAttribute("type","button");
+                button.setAttribute("id",note);
+                button.setAttribute("value",note);
+                button.onclick = addNote;
+                frag.appendChild(button);
+            }
+            //Scope = local variable
+            var buttonsPTag = document.getElementById("buttons");
+            buttonsPTag.appendChild(frag);
+        }
+
+
+        window.onload = function() {
+            //Scope = calls global function.
+            makeButtons();
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+    <form>
+        <p id="message">Enter a major triad chord:</p>
+        <p><input id="notesDisplay" type="text" size="21"></p>
+        <p id="buttons"></p>
+        <p id="resultsMessage">Directions: Press any 3 buttons to create a major chord triad.</p>
+    </form>
+</div>
+</body>
+</html>  

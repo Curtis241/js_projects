@@ -1,0 +1,103 @@
+Objective 2:
+
+Implement a function, factorial(), that computes the factorial of a given number, as described in the lesson.
+
+You can use this skeleton code to get started:
+
+<!doctype html>
+<html>
+<head>
+  <title> factorial </title>
+  <meta charset="utf-8">
+  <script>
+    function factorial(n) {
+        // your code here
+    }
+
+    console.log("Factorial result: " + factorial(5));
+
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as factorial.html. Comment your code liberally! When the project is working to your satisfaction, hand in factorial.html. Try your function on multiple values (not just 5) to make sure it's working correctly. For instance, the factorial of 5 is 120; the factorial of 7 is 5040. As you can see, factorials grow quickly, so we don't advise testing your code on numbers greater than 10 or so!
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Advanced JavaScript Project: Favorites and Tags </title>
+    <style>
+        body {
+            font-family: Helvetica, Ariel, sans-serif;
+        }
+        div.tableContainer {
+            display: table;
+            border-spacing: 5px;
+        }
+        div.tableRow {
+            display: table-row;
+        }
+        div.tableRow label {
+            display: table-cell;
+            text-align: right;
+        }
+        div.tableRow.textInput {
+            display: table-cell;
+            width: 200px;
+        }
+        div.tableRow.button {
+            display: table-row;
+            width: 50px;
+        }
+        ul.tableContainer {
+            display: table;
+            border-spacing: 5px;
+        }
+        span {
+            display: block;
+        }
+        span#comment {
+            font-size: 80%;
+            color: #777777;
+        }
+        span#tags {
+            font-size: 80%;
+            color: rgb(48, 99, 170);
+        }
+        input.favoriteItemButton {
+            width: 55px;
+            background-color: white;
+            text-decoration: underline;
+            text-align: left;
+            color: rgb(46, 53, 170);
+            font-style: italic;
+            cursor: pointer;
+            border: 0px;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+    <script src="faves.js"></script>
+</head>
+<body>
+    <h1>Tag and save your favorites</h1>
+    <form>
+        <fieldset>
+            <legend>Add a new favorite:</legend>
+            <div class="tableContainer">
+                <div class="tableRow">
+                    <input type="hidden" id="keyInput"/>
+                </div>
+                <div class="tableRow">
+                    <label for="urlInput">URL:</label>
+                    <input type="text" id="urlInput" class="textInput" placeholder="www.google.com"/>
+                </div>
+                <div class="tableRow">
+                    <label for="titleInput">Title:</label>
+                    <input type="text" id="titleInput" class="textInput" placeholder="Google"/>
+                </div>
+                <div class="tableRow">
+                    <label for="commentInput">Comment:</label>
+                    <input type="text" id="commentInput" class="textInput" placeholder="What do you think of this link?"/>
+                </div>
+                <div class="tableRow">
+                    <label for="tagsInput">Tags:</label>
+                    <input type="text" id="tagsInput"  class="textInput" placeholder="Enter tags seperated by commas"/>
+                </div>
+                <div class="tableRow">
+                    <label for="addButton"></label>
+                    <input type="button" id="addButton" class="button" value="Add">
+                    <input type="button" id="updateButton" class="button" value="Update">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <h1>List of favorites</h1>
+    <form>
+        <ul id="linkList"></ul>
+    </form>
+</body>
+</html>

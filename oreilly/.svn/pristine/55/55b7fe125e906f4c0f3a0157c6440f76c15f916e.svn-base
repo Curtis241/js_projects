@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title> Counter Constructor instead of  Module Pattern </title>
+    <meta charset="utf-8">
+    <script>
+        function CounterModule() {
+            var counter = 0;
+
+            this.increment = function() {
+                counter++;
+            };
+            this.decrement = function() {
+                counter--;
+            };
+            this.reset = function() {
+                counter = 0;
+            };
+            this.getValue = function() {
+                return counter;
+            };
+        };
+
+        var counterModule;
+        window.onload = function() {
+            counterModule = new CounterModule();
+            counterModule.increment();
+            counterModule.increment();
+            counterModule.decrement();
+            counterModule.increment();
+            console.log(counterModule.getValue());
+            counterModule.reset();
+        };
+
+    </script>
+</head>
+<body>
+</body>
+</html> 

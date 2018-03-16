@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <title> Object Prototypes Project : Books, 1 </title>
+    <meta charset="utf-8">
+    <style>
+        .mystery {
+            background-color: rosybrown;
+        }
+        .biography {
+            background-color: mistyrose;
+        }
+    </style>
+    <script>
+
+
+        //This creates the base object that can be used to derive the MysteryBook and BiographyBook objects. I don't need
+        //to add the parameters to the constructor because they will not be used. I do have to set and initialize the
+        //properties otherwise they will not be part of the derived objects.
+        function Book() {
+            this.title = "";
+            this.author = "";
+            this.published = "";
+            this.hasMovie = false;
+            this.display = function () {
+                console.log(JSON.stringify(this));
+            };
+            this.toString = function () {
+                return "Title: " + this.title + ", Author: " + this.author + ", Genre: " + this.genre + ", Published: " + this.published + ", Has Movie: " + this.hasMovie;
+            }
+        }
+
+        //Creating the MysteryBook object.
+        //Comment:
+        //I would like to remove the property setters from these functions and add to Book function because it is duplicated code,
+        //but I cannot find a way to do this. If I take them out the properties will be undefined.
+        var MysteryBook = function (title, author, published, hasMovie) {
+            this.title = title;
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+            this.genre = 'mystery'
+        };
+        //Have to instantiate the Book object and add to prototype to copy the methods and properties.
+        MysteryBook.prototype = new Book();
+
+        var BiographyBook = function (title, author, published, hasMovie) {
+            this.title = title;
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+            this.genre = 'biography'
+        };
+        BiographyBook.prototype = new Book();
+
+        window.onload = function() {
+            var books = [ ];
+
+            books.push(new BiographyBook("A Moveable Feast","Ernest Hemingway",1964,false));
+            books.push(new BiographyBook("The Life of Samuel Johnson","James Boswell",1791,false));
+            books.push(new MysteryBook("A Dark-Adapted Eye","Ruth Rendell",1986,false));
+            books.push(new MysteryBook("A Coffin for Dimitrios","Eric Ambler",1939,false));
+            books.push(new BiographyBook("Eminent Victorians","Lytton Strachey", 1918,true));
+            books.push(new BiographyBook("Experience","Martin Amis",2000,false));
+            books.push(new MysteryBook("The Woman in White","Wilkie Collins",1859,false));
+            books.push(new MysteryBook("A Crime in the Neighborhood","Suzanne Berne",1997,false));
+
+
+            for(var i = 0; i < books.length; i++) {
+                addToPage(books[i]);
+            }
+
+        };
+
+        /*
+          1. Do we still need the genre property?
+
+            Yes. I think the genre property is necessary.
+
+
+          2. Which method of creating books do you prefer?
+
+             I think the genre property is necessary because it makes the code simpler.
+             In the section below I would have to add another if statement to filter another book type.
+             By adding the genre property I can simply have one line.
+
+             bookItem.setAttribute("class",book.genre);
+
+
+          3. Can you see advantages of one way over the other?
+
+             I think using the prototype chain works very well when there are methods that need to be different over the same data.
+             In the lesson, the Square object had a getArea method and the Circle had a getCircumference method but they both had an
+             area property. In this example the only difference is the genre property, which is not enough to justify creating a new object type.
+        */
+
+        function addToPage(book) {
+            var booksList = document.getElementById("books");
+            var bookItem = document.createElement("li");
+
+            if(book instanceof MysteryBook) {
+                bookItem.setAttribute("class", "mystery");
+            }
+
+            if(book instanceof BiographyBook) {
+                bookItem.setAttribute("class", "biography");
+            }
+
+            bookItem.innerHTML = book.toString();
+            booksList.appendChild(bookItem);
+        }
+    </script>
+</head>
+<body>
+<ul id="books">
+</ul>
+</body>
+</html>      

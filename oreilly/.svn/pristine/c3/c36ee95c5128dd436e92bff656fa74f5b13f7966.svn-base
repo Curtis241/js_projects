@@ -1,0 +1,120 @@
+Objective 1:
+
+Here is some code to set a timeout for 1 second (1000 milliseconds). We pass two arguments to the setTimeout() function: the first is a function to increment the count
+variable and display the count, and the second, the number of milliseconds to wait before calling the function in the first argument.
+
+var count = 0;
+var timer = setTimeout(function() {  
+    count++;
+    console.log(count);
+}, 1000);          
+
+What if you wanted to change the function so that it would check to see if count is less than 10, and if so, call setTimeout() again with the same function?
+In this case, setTimeout() would be called 10 times, each time the function we pass to setTimeout() increments count and checks to see if count is less than 10.
+If it is, the function calls setTimeout again, to do the same thing.
+
+Rewrite this code to accomplish this, and display a counter once every 10 seconds. The console should show the numbers 1 - 10.
+Explain why you made the changes you did (in comments in the code).
+
+You can get started with this skeleton code:
+
+<!doctype html>
+<html>
+<head>
+  <title> setTimeout </title>
+  <meta charset="utf-8">
+  <script>
+
+    var count = 0;
+    
+    // rewrite the code above here so that it displays a counter once every
+    // 10 seconds. The console should show the numbers 1 - 10.
+
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as timer.html. Comment your code liberally! When the project is working to your satisfaction, hand in timer.html.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right.
+If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove.
+The number of items you are expected to hand in is displayed above the HandIn tree.
+You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

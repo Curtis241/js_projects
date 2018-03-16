@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title> Counter  </title>
+    <meta charset="utf-8">
+    <script>
+        //Added use strict to throw errors when run-time errors are caught by the browser.
+        "use strict";
+        var counterModule = (function(initialValue) {
+            var counter = initialValue;
+
+            return {
+                increment: function() {
+                    counter++;
+                },
+                decrement: function() {
+                    counter--;
+                },
+                reset: function() {
+                    counter = 0;
+                },
+                getValue: function() {
+                    return counter;
+                }
+            };
+        })(0);
+
+        window.onload = function() {
+            //Use freeze to prevent public properties from being modified.
+            Object.freeze(counterModule);
+
+            counterModule.increment();
+            counterModule.increment();
+            counterModule.decrement();
+            counterModule.increment();
+            console.log(counterModule.getValue());
+            counterModule.reset();
+
+            counterModule.increment = "changing a public method";
+        };
+    </script>
+</head>
+<body>
+</body>
+</html> 

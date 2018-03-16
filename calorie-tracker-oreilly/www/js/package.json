@@ -1,0 +1,15 @@
+{
+  "name": "calorie_tracker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "baseUrl": "www/js/node_modules",
+  "devDependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}

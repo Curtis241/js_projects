@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <title> Object Prototypes Project : Books, 1 </title>
+    <meta charset="utf-8">
+    <style>
+        .mystery {
+            background-color: rosybrown;
+        }
+        .biography {
+            background-color: mistyrose;
+        }
+    </style>
+    <script>
+
+        /*      Write a program that uses one constructor, Book(), to create book objects with the following properties: genre, title, author, published (the year it was published),
+         and hasMovie (a boolean indicating if the book has been made into a movie or tv show), display() (a method that displays the object in the console), and toString()
+         (a method that returns a string describing the book).*/
+
+        // your code here for the Book() constructor
+        var bookMethods = {
+            display: function () {
+                console.log(JSON.stringify(this));
+            },
+            toString: function () {
+                return "Title: " + this.title + ", Author: " + this.author + ", Genre: " + this.genre + ", Published: " + this.published + ", Has Movie: " + this.hasMovie;
+            }
+        };
+
+        function Book(title, author, published, hasMovie) {
+            this.title = title;
+            this.genre = "";
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+        }
+
+        function MysteryBook() {}
+        function BiographyBook() {}
+
+        Book.prototype = bookMethods;
+        Book.constructor.prototype = MysteryBook;
+        Book.prototype = bookMethods;
+        BiographyBook.constructor = Book;
+
+
+        /*function MysteryBook(title, author, published, hasMovie) {
+            this.genre = "mystery";
+            this.title = title;
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+        };
+
+        function BiographyBook(title, author, published, hasMovie) {
+            this.genre = "biography";
+            this.title = title;
+            this.author = author;
+            this.published = published;
+            this.hasMovie = hasMovie;
+        };*/
+
+
+        window.onload = function() {
+            var books = [ ];
+            // your code here to create the books and call addToPage()
+
+            books.push(new BiographyBook("A Moveable Feast","Ernest Hemingway",1964,false));
+            books.push(new BiographyBook("The Life of Samuel Johnson","James Boswell",1791,false));
+            books.push(new MysteryBook("A Dark-Adapted Eye","Ruth Rendell",1986,false));
+            books.push(new MysteryBook("A Coffin for Dimitrios","Eric Ambler",1939,false));
+            books.push(new BiographyBook("Eminent Victorians","Lytton Strachey", 1918,true));
+            books.push(new BiographyBook("Experience","Martin Amis",2000,false));
+            books.push(new MysteryBook("The Woman in White","Wilkie Collins",1859,false));
+            books.push(new MysteryBook("A Crime in the Neighborhood","Suzanne Berne",1997,false));
+
+
+            for(var i = 0; i < books.length; i++) {
+                addToPage(books[i]);
+            }
+
+        };
+
+        function addToPage(book) {
+            var booksList = document.getElementById("books");
+            var bookItem = document.createElement("li");
+
+            bookItem.setAttribute("class", book.genre);
+            bookItem.innerHTML = book.toString();
+            booksList.appendChild(bookItem);
+        }
+    </script>
+</head>
+<body>
+<ul id="books">
+</ul>
+</body>
+</html>      

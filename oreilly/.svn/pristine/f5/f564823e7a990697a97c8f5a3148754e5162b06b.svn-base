@@ -1,0 +1,163 @@
+/**
+ * Created by cpeterson on 27/05/15.
+ */
+
+    window.onload = function() {
+
+        var upButton = document.getElementById("upButton");
+        upButton.onclick = Preview.moveUp;
+
+        var downButton = document.getElementById("downButton");
+        downButton.onclick = Preview.moveDown;
+
+        Preview.init();
+    };
+
+    var Preview = (function(document) {
+
+        var thumbnails = [];
+
+        function Thumbnail(id,imageName,hidden) {
+            this.id = id;
+            this.imageName = imageName;
+            this.hidden = hidden;
+        }
+
+        function findImageName(thumbNailId) {
+
+            for(var i=0;i<thumbnails.length;i++) {
+                var thumbnail = thumbnails[i];
+
+                if(thumbnail.id == thumbNailId) {
+                    return thumbnail.imageName;
+                }
+            }
+        }
+
+        function setThumbnailHiddenState(thumbNailId,hidden) {
+
+            for(var i=0;i<thumbnails.length;i++) {
+                var thumbnail = thumbnails[i];
+
+                if(thumbnail.id == thumbNailId) {
+                    thumbnails[i].hidden = hidden;
+                }
+            }
+        }
+
+        function thumbnailClickEventHandler(e) {
+            console.log("thumbnailClickEventHandler: called");
+
+            var thumbnailImg = e.target;
+            var thumbnailName = thumbnailImg.getAttribute("id");
+            var imageName = findImageName(thumbnailName);
+
+            var imagePreviewImg = document.getElementById("imageViewer");
+            imagePreviewImg.setAttribute("class","previewOverlay");
+            imagePreviewImg.setAttribute("src","images/" + imageName + ".jpg");
+            imagePreviewImg.setAttribute("data-preview",imageName);
+        }
+
+
+        function init() {
+            console.log("init: called");
+
+            var images = document.getElementsByTagName("img");
+
+            for(var i = 0; i < images.length; i++) {
+                var image = images[i];
+                var id = image.getAttribute("id");
+
+                if(id.toString()) {
+                    var hidden = true;
+                    if(image.hasAttribute("class").toString() == "invisible") {
+                        hidden = false;
+                    }
+
+                    var thumbnail = new Thumbnail(parseInt(id),"image" + id,hidden);
+                    thumbnails.push(thumbnail);
+
+                    image.onclick = thumbnailClickEventHandler
+                }
+            }
+
+        }
+
+        function findTopThumbnail() {
+
+            for(var i=1; i<thumbnails.length; i++) {
+                var thumbnail = thumbnails[i];
+                if(thumbnail.hidden == false) {
+                    return thumbnail;
+                }
+            }
+        }
+
+        function findBottomThumbnail() {
+
+            for(var i=(thumbnails.length-1); i>0; i--) {
+                var thumbnail = thumbnails[i];
+                if(thumbnail.hidden == false) {
+                    return thumbnail;
+                }
+            }
+        }
+
+        function moveDown() {
+            console.log("moveDown: called");
+
+            var bottomThumbnailObj = findBottomThumbnail();
+            var topThumbnailObj = findTopThumbnail();
+
+            console.log("moveDown: returned bottom thumbnail: " + JSON.stringify(bottomThumbnailObj));
+            console.log("moveDown: returned top thumbnail: " + JSON.stringify(topThumbnailObj));
+
+            var topId = topThumbnailObj.id;
+            var bottomId = (bottomThumbnailObj.id + 1);
+
+            console.log("moveDown: new bottom index " + bottomId);
+            console.log("moveDown: new top index " + topId);
+
+            //Need to hide the top and unhide the bottom thumbnail.
+            var topThumbnail = document.getElementById(topId);
+            topThumbnail.setAttribute("class","invisible");
+            setThumbnailHiddenState(topId,true);
+
+            var bottomThumbnail = document.getElementById(bottomId);
+            bottomThumbnail.setAttribute("class","visible");
+            setThumbnailHiddenState(bottomId,false);
+
+        }
+
+        function moveUp() {
+            console.log("moveUp: called");
+
+            var bottomThumbnailObj = findBottomThumbnail();
+            var topThumbnailObj = findTopThumbnail();
+
+            console.log("moveDown: returned bottom thumbnail: " + JSON.stringify(bottomThumbnailObj));
+            console.log("moveDown: returned top thumbnail: " + JSON.stringify(topThumbnailObj));
+
+            var topId = (topThumbnailObj.id + 1);
+            var bottomId = bottomThumbnailObj.id;
+
+            console.log("moveDown: new bottom index " + bottomId);
+            console.log("moveDown: new top index " + topId);
+
+            //Need to hide the bottom and unhide the top thumbnail.
+            var topThumbnail = document.getElementById(topId);
+            topThumbnail.setAttribute("class","visible");
+            setThumbnailHiddenState(topId,false);
+
+            var bottomThumbnail = document.getElementById(bottomId);
+            bottomThumbnail.setAttribute("class","invisible");
+            setThumbnailHiddenState(bottomId,true);
+
+        }
+
+        return {
+            init: init,
+            moveUp: moveUp,
+            moveDown: moveDown
+        };
+    })(document);

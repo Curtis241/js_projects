@@ -1,0 +1,143 @@
+Objective 2:
+
+In this project, you'll create a function that generates functions to add to the web page below. Notice in the HTML, we have two container <div>s: "container1" and "container2." Both these <div> elements are the full page wide, and 300px tall. (Imagine you are building a game with two players, one in the top part of the screen and one in the bottom part):
+
+<!doctype html>
+<html>
+<head>
+  <title> Functions: Returning a function from a function </title>
+  <meta charset="utf-8">
+  <style>
+    html, body, div#container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    div#container1, div#container2 {
+        position: relative;
+        height: 300px;
+        border: 1px solid black;
+    }
+    .red {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: red;
+    }
+    .blue {
+        position: absolute;
+        width: 175px;
+        height: 175px;
+        background-color: lightblue;
+    }
+  </style>
+  <script>
+    
+    // your code here 
+
+  </script>
+</head>
+<body>
+    <div id="container1"></div>
+    <div id="container2"></div>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as gameDivs.html.
+
+First, create a function, addDivTo() that takes an id for a container, and returns a function. The function returned should take one argument, a string representing a CSS class. (Hint: don't name your parameter "class": this is a reserved word in JavaScript, so use another name!). The function will create a new <div> element and add it to the <div> with the id id that was passed into the call to addDivTo().
+
+When you call the function returned from addDivTo(), you'll pass in the name of the class you want the <div> to have. The function will create the <div>, give it the class, position the <div> randomly in the correct container <div>, append the new <div> to the container <div> and return the new <div>.
+
+Then write an event handler function for the window load event to add several <div> elements to the page in the two containers. Feel free to create more classes for different color <div> elements if you want (or modify the CSS to make circles too if you like).
+
+Comment your code liberally! When the project is working to your satisfaction, hand in gameDivs.html.
+
+More hints:
+
+    Create a new element with document.createElement("div").
+    Add a div to a container div using appendChild().
+    Create a random position using Math.random() and Math.floor():
+    newDiv.style.left = Math.floor(Math.random() * (div.offsetWidth - 175)) + "px";
+    newDiv.style.top = Math.floor(Math.random() * (div.offsetHeight - 175)) + "px";
+    where div is a container <div>.
+
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

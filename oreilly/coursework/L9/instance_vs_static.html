@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title> Recursion </title>
+    <meta charset="utf-8">
+    <style>
+        .square {
+            background-color: lightblue;
+            cursor: pointer;
+        }
+        .square p {
+            padding-top: 35%;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script>
+        function Square(id, size) {
+            this.id = id;
+            this.size = size;
+            this.el = null;
+
+            this.bigger = function(size) {
+                if(this.el) {
+                    this.size += size;
+                    this.el.style.width = this.size + "px";
+                    this.el.style.height = this.size + "px";
+                    return this;
+                }
+            };
+
+            this.color = function(color) {
+                if(this.el) {
+                    this.el.style.backgroundColor = color;
+                    return this;
+                }
+            };
+
+
+            this.display = function() {
+                this.el = document.createElement("div");
+                this.el.setAttribute("id", this.id);
+                this.el.setAttribute("class", "square");
+                this.el.style.width = this.size + "px";
+                this.el.style.height = this.size + "px";
+                this.el.innerHTML = "<p>" + this.id + "</p>";
+                console.log(this.id + " has size " + this.size +
+                        ", and is a " + this.constructor.name);
+                document.getElementById("squares").appendChild(this.el);
+
+                return this;
+            };
+        }
+
+        //Static method
+        Square.info = function () {
+            return "Square is a constructor for making square objects with an id and size.";
+        };
+
+        window.onload = function() {
+            var mySquare = new Square("mySquare",100);
+            mySquare.display().color("green");
+            mySquare.el.onclick = function() {
+                mySquare.bigger(50).color("red");
+            };
+
+            var info = Square.info();
+            console.log(info);
+        };
+    </script>
+</head>
+<body>
+<div id="squares"></div>
+</body>
+</html>   

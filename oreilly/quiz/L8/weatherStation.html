@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Weather Station </title>
+    <script>
+        var weatherStation = {
+            update: [],
+            addObserver: function(f) {
+                console.log("Beginning of addObserver function: ");
+                console.log(this);
+                this.update.push(f);
+                console.log("End of addObserver function: ");
+                console.log(this);
+
+            }
+            function notify() {
+                console.log("Beginning of notify function: ");
+                console.log(this);
+                for (var i = 0; i < this.update.length; i++) {
+                    console.log("Within for loop in notify function: ");
+                    console.log(this);
+                    var f = this.update[i];
+                    f.apply(this, arguments);
+                }
+                console.log("End of notify function: ");
+                console.log(this);
+            }
+        };
+
+        weatherStation.addObserver(function(weather) {
+            console.log("Beginning of weatherStation.addObserver.temp: ");
+            console.log(this);
+            console.log("The current temp is: " + weather.temp);
+        });
+
+        weatherStation.addObserver(function(weather) {
+            console.log("Beginning of weatherStation.addObserver.pressure: ");
+            console.log(this);
+            console.log("The current pressure is: " + weather.pressure);
+        });
+
+        weatherStation.notify({ temp: 87, pressure: 29.93 });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

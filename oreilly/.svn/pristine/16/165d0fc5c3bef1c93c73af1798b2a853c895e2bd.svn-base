@@ -1,0 +1,63 @@
+Objective 2:
+In this project, you'll write an equals() method for the Book object. Similar to the previous project, the equals() method will compare two objects.
+
+The equals() method will take one argument, a Book object, and will compare each property of the object passed in to the properties of "this" object. So, as you can see in the skeleton code below, you will test equality by calling the method like this: book1.equals(book2) which compares the properties in the book2 object with the properties in the book1 object.
+
+Again, for this project, assume we are implementing a "simple equality," meaning that all the properties that have primitive values in one object are equal to the properties with primitive values in another object. (So we will not include the equals() method itself in the test for equality.) Remember that both the property names, as well as the values, should be the same.
+
+Create a new file in your /AdvJS folder, objectsEqual2.html that contains the HTML and code below with new test cases to test the equals() method you are adding to the Book object. Here is the expected output using the test cases in the skeleton code below:
+
+Compare boo1, book2 with equals method:
+The two books are the same
+Compare book1, book3 with equals method:
+The two books are the different
+Book1 and null are not the same.
+Book1 and undefined are not the same.
+Book1 and {} are not the same.
+
+Feel free to test in other objects, and add more test cases of your own.
+
+Hint: Think carefully about how you compare values in this program. Remember you have two different equality operators you can use: the equality operator and the strict equality operator. We use the equality operator if we know the types of the values we are comparing are the same, or we want JavaScript to do implied typecasting for us. We use the strict equality operator when we want to make sure no typecasting is done.
+
+<!doctype html>
+<html>
+<head>
+  <title> Advanced JavaScript Project: equals() (version 2) </title>
+  <meta charset="utf-8">
+  <script>
+
+    function Book(title, author, published, hasMovie) {
+        this.title = title;
+        this.author = author;
+        this.published = published;
+        this.hasMovie = hasMovie;
+        this.equals = function(other) {
+           // your code here
+        };
+    }
+    var book1 = new Book("Harry Potter", "JK Rowling", 1999, true);
+    var book2 = new Book("Harry Potter", "JK Rowling", 1999, true);
+    var book3 = new Book("The Adventures of Sherlock Holmes", "Sir Arthur Conan Doyle", 1892, true);
+
+    // Test cases for the equals() method
+    console.log("Compare book1, book2 with equals method: ");
+    if (book1.equals(book2)) {
+        console.log("The two books are the same");
+    } else {
+        console.log("The two books are different");
+    }
+    console.log("Compare book1, book3 with equals method: ");
+    if (book1.equals(book3)) {
+        console.log("The two books are the same");
+    } else {
+        console.log("The two books are different");
+    }
+    if (!book1.equals(null)) { console.log("Book1 and null are not the same."); }
+    if (!book1.equals(undefined)) { console.log("Book1 and undefined are not the same."); }
+    if (!book1.equals({})) { console.log("Book1 and { } are not the same."); }
+  </script>
+</head>
+<body>
+</body>
+</html>
+Save the file as objectsEqual2.html. When the project is working to your satisfaction, hand in objectsEqual2.html.

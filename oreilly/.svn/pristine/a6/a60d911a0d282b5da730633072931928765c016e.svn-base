@@ -1,0 +1,131 @@
+Objective 2:
+
+For this project, you'll modify the previous program to create book objects from multiple constructors,
+one for each genre type. So, for example, you could have a MysteryBook() constructor to create mystery books,
+and a BiographyBook() constructor to create biography books.
+Each book will have the same properties as before: genre, title, author, published, hasMovie, display() and toString().
+
+Again, use a window.onload handler function to create an array of book objects, and add each book to the page using the addToPage() function (below). Create a new file in your /AdvJS folder, books2.html, and use the following HTML and JavaScript to get started:
+
+<!doctype html>
+<html>
+<head>
+  <title> Object Prototypes Project : Books, 2 </title>
+  <meta charset="utf-8">
+  <style>
+    .mystery {
+      background-color: rosybrown;
+    }
+    .biography {
+      background-color: mistyrose;
+    }
+  </style>
+  <script>
+  
+    // your code here for the Book() constructor
+
+    window.onload = function() {
+        var books = [ ];
+        // your code here to create the books and call addToPage()
+    };
+
+    function addToPage(book) {
+        var booksList = document.getElementById("books");
+        var bookItem = document.createElement("li");
+
+        // your code here to figure out how which class to add to the book
+        // you can use: bookItem.setAttribute("class", "mystery") to add the mystery class
+        // and: bookItem.setAttribute("class", "biography") to add the biography class
+                
+        bookItem.innerHTML = book.toString();
+        booksList.appendChild(bookItem);
+    }  
+  </script>
+</head>
+<body>
+<ul id="books">
+</ul>
+</body>
+</html>        
+
+When the project is working to your satisfaction, hand in books2.html
+
+Again, feel free to add more types of books other than mystery and biography, and again, think about which properties go into the
+various book constructors, and which go in the prototypes, and why? What other changes did you make to make to your code and why?
+Add some comments to your code that explain your changes.
+
+Notice the difference between using one type of constructor to create all the books and using the genre property to distinguish
+between the type of book, and having multiple types of books (by using a different constructor for each book).
+Do we still need the genre property? Which method of creating books do you prefer? Can you see advantages of one way over the other?
+Again, add some comments to your code that describe this.
+
+
+
+<!DOCTYPE html><html lang="en"><body><script>
+var Person = function(){this.bar = 'bar'};
+Person.prototype.foo = 'foo';
+var Chef = function(){this.goo = 'goo'};
+Chef.prototype = new Person();
+var cody = new Chef();
+console.log(cody.foo); // logs 'foo'
+console.log(cody.goo); // logs 'goo'
+console.log(cody.bar); // logs 'bar'
+</script></body></html>
+
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

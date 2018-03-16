@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title> Closures and a Timer </title>
+    <meta charset="utf-8">
+    <style>
+        div {
+            position: relative;
+            background-color: red;
+            border: 1px solid black;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+
+        window.onload = function() {
+            var div = document.getElementById("theDiv");
+            var incr = 10;
+            var minSize = 100;
+            var currentSize = 200;
+
+            setTimeout(function reduceSize() {
+                currentSize = currentSize - incr;
+                div.style.width = currentSize + "px";
+                div.style.height = currentSize + "px";
+                if (currentSize > minSize) {
+                    setTimeout(reduceSize, 100);
+                }
+            }, 100);
+        };
+
+    </script>
+</head>
+<body>
+<div id="theDiv"></div>
+</body>
+</html>        

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title> Modifying functions </title>
+    <meta charset="utf-8">
+    <script>
+
+        function modifyFunction(f) {
+             return function() {
+                 return f.apply(this,arguments);
+             };
+        }
+
+        function add1(num1, num2) {
+            return num1 + num2;
+        }
+
+        function add2(num1, num2, num3) {
+            var num4 = num1 + num2 + num3;
+            // don't return anything
+        }
+
+        var add1New = modifyFunction(add1);
+        console.log(add1New(1, 2)); // should display 3
+
+        var add2New = modifyFunction(add2);
+        console.log(add2New(3, 4, 5)); // should display this (the window object)
+
+    </script>
+</head>
+<body>
+</body>
+</html>    

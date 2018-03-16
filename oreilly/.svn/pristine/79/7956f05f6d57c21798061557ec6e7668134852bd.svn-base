@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title> Call Stack </title>
+    <meta charset="utf-8">
+    <script>
+
+        var count = 0;
+
+        function doRecursion() {
+            count++;
+            doRecursion();
+        }
+
+        try {
+            doRecursion();
+        }
+        catch (error) {
+            console.log("Count is: " + count + ", the error is: " + error);
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>  

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title> Closures project: making random number generators  </title>
+    <meta charset="utf-8">
+    <script>
+
+        function makeRandom(min,max) {
+            return function () {
+                return Math.floor((Math.random() * (max-min)) + min);
+            }
+        }
+
+        var makeRandom100 = makeRandom(0, 100);
+        var x = makeRandom100();
+
+        console.log(x);
+
+        var makeRandom1000 = makeRandom(900, 1000);
+        var y = makeRandom1000();
+
+        console.log(y);
+
+    </script>
+</head>
+<body>
+</body>
+</html>  

@@ -1,0 +1,162 @@
+Objective 2:
+
+For this project, you'll create a constructor for bug objects. A bug object in a page will look like this:
+
+The bug object will have one public method: moveBug(). The method will take one argument, the keycode of the key a user presses. If the user presses j, you'll move the bug down by a few pixels; if the user presses k, you'll move the bug up a few pixels; if the user presses h, you'll move the bug left a few pixels; and if the user presses l, you'll move the bug right a few pixels. We've created some CSS that will handle turning the bug to face the right direction; you just need to write the code to add the right classes to the element representing the bug at the appropriate times.
+
+Your constructor should create the bug, give it a unique id, create an element to represent the bug in the page, and set up all the code to move the bug in the correct direction depending on which key the user presses. All variables and functions in the constructor should be private, except for the moveBug() method.
+
+For the bug image, feel free to create your own image, or you can use the ladybug image we provide here:
+
+<!doctype html>
+<html>
+<head>
+  <title> setTimeout </title>
+  <meta charset="utf-8">
+  <style>
+    html, body {
+        margin: 0px;
+        padding: 0px;
+    }
+    div#container {
+        position: relative;
+    }
+    div.bug {
+        position: absolute;
+        width: 100px;
+        height: 76px;
+        -webkit-transition: -webkit-transform 2s;
+        -moz-transition: -moz-transform 2s;
+        -o-transition: -o-transform 2s;
+        transition: transform 2s;
+    }
+    .up {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .down {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+    .right {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .left {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+  </style>
+  <script>
+
+    // your code here
+    
+    window.onload = function() {
+        var bug = new Bug("container");
+
+        // j = 106 (down), k = 107 (up), h = 104 (left) , l = 108 (right)
+        document.onkeypress = function(e) {
+            bug.moveBug((typeof e.which == "number") ? e.which : e.keyCode);
+        }
+    };
+
+  </script>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as bug.html. Add your Bug() constructor to create bugs. We've got you started with the window.onload function that shows how to create a bug and handle the keypress event. The rest is up to you!
+
+Comment your code liberally! When the project is working to your satisfaction, hand in bug.html.
+
+Note: If you're using Internet Explorer, you should be using IE10 by now; for this project, upgrade or try another browser (like Chrome). The event handling code will not work for you if you're using IE8 or earlier.
+
+Hint: All the code you'll need to modify the style of the bug to get it to move and turn has been used in previous examples in the course. Use the CSS styles "up," "down," "right," and "left" to turn the bug when it moves in one of these directions. One key thing to remember is that when you set the position of a bug with JavaScript, using the CSS "top" or "left" properties, you must add the string "px" onto the end of the number you're using for the position. Check earlier examples in the course to see how.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

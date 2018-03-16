@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle generator</title>
+    <script>
+
+        window.onload = function() {
+            var newCar = new Vehicle();
+
+            newCar.show();
+            newCar.addDoors(4);
+            newCar.addWheels(4);
+            newCar.show();
+        };
+
+        var Vehicle = function() {
+            var doorCount = 0;
+            var wheelCount = 0;
+            return {
+                addDoors: function(count) {
+                    doorCount = count;
+                },
+                addWheels: function(count) {
+                    wheelCount = count;
+                },
+                show: function() {
+                    console.log("This vehicle has " + doorCount + " doors and " + wheelCount + " wheels ");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

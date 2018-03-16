@@ -1,0 +1,22 @@
+// For any third party dependencies, like jQuery, place them in the node_modules folder.
+
+// Configure loading modules from the node_modules directory,
+// except for 'app' ones, which are in a sibling
+// directory.
+requirejs.config({
+    baseUrl: 'js',
+    paths: {
+        app: 'app',
+        bootstrap: 'node_modules/bootstrap/dist/js/bootstrap',
+        jquery: 'node_modules/jquery/dist/jquery',
+        storage: 'app/storage'
+    },
+    shim: {
+        'jquery': { exports: '$'},
+        'bootstrap': {deps: ['jquery']}
+    }
+});
+
+// Start loading the main app file. Put all of
+// your application logic in there.
+requirejs(['app/login']);

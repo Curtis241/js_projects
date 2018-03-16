@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Calorie Tracker - Registration </title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="js/node_modules/blueimp-md5/js/md5.js"></script>
+    <script src="js/app/model.js"></script>
+    <script src="js/app/session.js"></script>
+    <script src="js/app/view.js"></script>
+    <script src="js/app/registrationController.js"></script>
+    <script src="js/app/registrationView.js"></script>
+    <script>
+        window.onload = function() {
+            //The registration page should only be accessible when the user cannot be authenticated.
+            if (session.isAuthenticated()) {
+                window.location = "index.html"
+            }
+
+            var createAccountButton = document.getElementById("createAccountButton");
+            createAccountButton.onclick = registrationView.createAccountButtonHandler;
+
+            var loginButton = document.getElementById("loginButton");
+            loginButton.onclick = registrationView.loginButtonHandler;
+        }
+    </script>
+</head>
+<body>
+    <div id="banner" class="media-body">
+        <img id="bannerImg" class="media-right" src="img/banner.jpg">
+    </div>
+    <hr id="bannerSeparator"/>
+    <div id="statusBar">
+        <label></label>
+    </div>
+    <div id="registrationContent" class="panel panel-default panel-primary col-md-offset-2 col-md-6">
+        <div class="panel-heading">Registration</div>
+        <div class="panel-body">
+            <form class="form-group">
+                <div id="errorDiv" class="alert" role="alert"></div>
+                <div id="usernameDiv" class="input-group">
+                    <input type="text" id="usernameInput" placeholder="Username" class="form-control input-sm" aria-describedby="usernameAddon">
+                    <span class="input-group-addon glyphicon" id="usernameAddon"></span>
+                </div>
+                <div id="passwordDiv" class="input-group">
+                    <input type="password" id="passwordInput" placeholder="Password" class="form-control input-sm" aria-describedby="passwordAddon">
+                    <span class="input-group-addon glyphicon" id="passwordAddon"></span>
+                </div>
+                <div id="confirmPasswordDiv" class="input-group">
+                    <input type="password" id="confirmPasswordInput" placeholder="Confirm Password" class="form-control input-sm" aria-describedby="confirmPasswordAddon">
+                    <span class="input-group-addon glyphicon" id="confirmPasswordAddon"></span>
+                </div>
+                </br>
+                <div id="firstNameDiv" class="input-group">
+                    <input type="text" id="firstNameInput" placeholder="First Name" class="form-control input-sm" aria-describedby="firstNameAddon">
+                    <span class="input-group-addon glyphicon" id="firstNameAddon"></span>
+                </div>
+                <div id="lastNameDiv" class="input-group">
+                    <input type="text" id="lastNameInput" placeholder="Last Name" class="form-control input-sm" aria-describedby="lastNameAddon">
+                    <span class="input-group-addon glyphicon" id="lastNameAddon"></span>
+                </div>
+                <div id="cityDiv" class="input-group">
+                    <input type="text" id="cityInput" placeholder="City" class="form-control input-sm" aria-describedby="cityAddon">
+                    <span class="input-group-addon glyphicon" id="cityAddon"></span>
+                </div>
+                <div id="stateDiv" class="input-group">
+                    <input type="text" id="stateInput" placeholder="State/Prov" class="form-control input-sm" aria-describedby="stateAddon">
+                    <span class="input-group-addon glyphicon" id="stateAddon"></span>
+                </div>
+                <div id="countryDiv" class="input-group">
+                    <input type="text" id="countryInput" placeholder="Country" class="form-control input-sm" aria-describedby="countryAddon">
+                    <span class="input-group-addon glyphicon" id="countryAddon"></span>
+                </div>
+                <div id="emailDiv" class="input-group">
+                    <input type="text" id="emailInput" placeholder="Email" class="form-control input-sm" aria-describedby="emailAddon">
+                    <span class="input-group-addon glyphicon" id="emailAddon"></span>
+                </div>
+                </br>
+                <button id="loginButton" type="button" class="btn btn-primary pull-left">Login</button>
+                <button id="createAccountButton" type="button" class="btn btn-primary pull-right">Create Account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

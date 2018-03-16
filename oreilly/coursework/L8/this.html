@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> What happens to this? </title>
+    <style>
+        .square {
+            background-color: lightblue;
+            cursor: pointer;
+        }
+        .circle {
+            background-color: orange;
+            cursor: pointer;
+        }
+        .square p, .circle p {
+            padding-top: 35%;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script>
+        var n = 0;
+
+        function Square(id,name,size) {
+            console.log("This at the top of the Square constructor: ");
+            console.log(this);
+            this.id = id;
+            this.name = name;
+            this.size = size;
+            this.display = function() {
+                console.log("This in the Square's display method: ");
+                console.log(this);
+                var el = document.getElementById(this.id);
+                el.style.width = this.size + "px";
+                el.style.height = this.size + "px";
+                el.innerHTML = "<p>" + this.name + "</p>";
+                console.log(this.name + " has size " + this.size + ", and is a " + this.constructor.name);
+            };
+            console.log("This at the bottom of the Square constructor: ");
+            console.log(this);
+        }
+        window.onload = function() {
+            console.log("This in window.onload: ");
+            console.log(this);
+            var square = new Square("s1","square one",100);
+            setupClickHandler(square);
+            square.display();
+        };
+        function setupClickHandler(shape) {
+            console.log("This in setupClickHandler: ");
+            console.log(this);
+            var elDiv = document.getElementById(shape.id);
+            elDiv.onclick = function() {
+                console.log("This in click handler: ");
+                console.log(this);
+                n++;
+                var counter = document.getElementById("counter_" + shape.id);
+                counter.innerHTML = "You've clicked " + n + " times.";
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="s1" class="square"></div>
+    <p id="counter_s1"></p>
+</body>
+</html>

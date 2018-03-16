@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title> Make an object's methods chainable </title>
+    <meta charset="utf-8">
+    <script>
+
+        function modifyFunction(f) {
+
+            return function() {
+                var returnValue = f.apply(this, arguments);
+                if (returnValue == undefined) {
+                    return this;
+                } else {
+                    return returnValue;
+                }
+            };
+        }
+
+        //Inside that function, "if" o has the property m and "if" o[m] is an instance of a function, then how might o[m] be equal to what is
+        // returned by the provided function modifyFunction() when it is sent o[m] as an argument?
+        function modifyMethod(o, methodName) {
+            o[methodName]= modifyFunction(o[methodName]);
+        }
+
+
+
+        var o = {
+            num: 0,
+            add: function(x) {
+                this.num += x;
+            },
+            sub: function(x) {
+                this.num -= x;
+            }
+        };
+
+        // We can't chain object o's method because they don't return "this"
+        //o.add(4).sub(2); // fail - the methods aren't chainable yet!
+
+        // Make the add method chainable.
+        modifyMethod(o, "add");
+
+        // Now we can chain the add methods
+        o.add(2).add(4);
+        console.log(o.num); // o.num = 6
+
+        // Now make the sub method chainable
+        modifyMethod(o, "sub");
+
+        // Now we can chain both the sub and add methods
+        o.sub(1).add(3).sub(5);
+        console.log(o.num);  // o.num = 3
+
+    </script>
+</head>
+<body>
+</body>
+</html> 

@@ -1,0 +1,25 @@
+Objective 2:
+Write a program that does the following:
+
+Creates an array, myArray, with some values, and displays the array in the console using console.log(myArray).
+Adds two named properties to the array, myArray: name and list(). name is a string property with a short name for the array. list() is a method that uses a for loop
+and the array indices to loop through the array and display all the values in the array. Show how you call the list() method to display the values in the array.
+Implements a function, displayArray(), that takes an array, and displays all the properties of the array object using a for/in loop and bracket notation.
+
+
+Show how you call the displayArray() function to display the properties in the array. Are you surprised by what you see? Describe the result (in code comments).
+Create a new file in your /AdvJS folder, array.html, and add your code.
+
+<!doctype html>
+<html>
+<head>
+  <title> Advanced JavaScript Project: Constructing Array Objects </title>
+  <meta charset="utf-8">
+  <script>
+    // your code here
+  </script>
+</head>
+<body>
+</body>
+</html>        
+Test your code with a variety of different values in myArray. When the project is working to your satisfaction, hand in array.html.

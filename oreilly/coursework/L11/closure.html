@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <title> Closures </title>
+    <meta charset="utf-8">
+    <script>
+
+        /*function makeAdder(x, y) {
+            var adder = function() {
+                return x + y;
+            };
+
+            return adder;
+        }*/
+
+        /*function makeAdder(x, y) {
+            var z = 10;
+            var adder = function() {
+                return x + y;
+            };
+
+            return adder;
+        }*/
+
+        /*only non-local variables are added to a closure
+        function makeAdder(x, y) {
+            var z = 10;
+            var adder = function() {
+                var x = 10;
+                return x + y;
+            };
+
+            return adder;
+        }*/
+
+      /*function makeAdder(x, y) {
+            var z = 10;
+            var adder = function() {
+                var x = 10;
+                return x + y + z;
+            };
+
+            return adder;
+        }
+
+        var f = makeAdder(2, 3);
+        var result = f();
+        console.log("Result is: " + result);*/
+
+
+        //Each Closure is Unique
+        /*function makeAdder(x, y) {
+            var z = 10;
+            var adder = function() {
+                var x = 10;
+                return x + y + z;
+            };
+
+            return adder;
+        }
+
+        var f = makeAdder(2, 3);
+        var result = f();
+        console.log("Result is: " + result);
+
+        var g = makeAdder(4, 5);
+        var anotherResult = g();
+        console.log("Another result is: " + anotherResult);*/
+
+
+        //Closures Might Not Always Act Like You Expect
+     /*   function makeAdder(x, y) {
+            var adder = function() {
+                return x + y;
+            };
+            x = 10;
+            return adder;
+        }
+
+        var f = makeAdder(2, 3);
+        var result = f();
+        console.log("Result is: " + result);
+
+        var g = makeAdder(4, 5);
+        var anotherResult = g();
+        console.log("Another result is: " + anotherResult);*/
+
+
+        //Closures for Methods
+        function makeAdder(x, y) {
+            var adder = function() {
+                return x + y;
+            };
+            x = 10;
+            return adder;
+        }
+
+        var f = makeAdder(2, 3);
+        var result = f();
+        console.log("Result is: " + result);
+
+        var g = makeAdder(4, 5);
+        var anotherResult = g();
+        console.log("Another result is: " + anotherResult);
+
+        function makeObject(x, y) {
+            return {
+                z: 10,
+                adder: function() {
+                    return x + y + this.z;
+                }
+            };
+        }
+
+        var o = makeObject(2, 3);
+        var result2 = o.adder();
+        console.log("Result in o is: " + result2);
+
+    </script>
+</head>
+<body>
+</body>
+</html>        

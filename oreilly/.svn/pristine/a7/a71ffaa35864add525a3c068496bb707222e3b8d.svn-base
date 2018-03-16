@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title> Module Pattern </title>
+    <meta charset="utf-8">
+    <script>
+
+        var counterModule = (function() {
+            var counter = 0;
+
+            return {
+                increment: function() {
+                    counter++;
+                },
+                decrement: function() {
+                    counter--;
+                },
+                reset: function() {
+                    counter = 0;
+                },
+                getValue: function() {
+                    return counter;
+                }
+            };
+        })();
+
+        window.onload = function() {
+            counterModule.increment();
+            counterModule.increment();
+            counterModule.decrement();
+            counterModule.increment();
+            console.log(counterModule.getValue());
+            counterModule.reset();
+        };
+
+    </script>
+</head>
+<body>
+</body>
+</html>

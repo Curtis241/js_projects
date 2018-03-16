@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Calorie Tracker - Main</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/node_modules/requirejs/require.js"></script>
+    <script>
+        require(['./js/app'], function (app) {
+            require(['app/main']);
+        });
+    </script>
+</head>
+<body>
+<div class="col-md-1"></div>
+<h3>Calorie Tracker</h3>
+<div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#chart" aria-controls="profile" role="tab" data-toggle="tab">Chart</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+    </br>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="col-md-offset-1 col-md-2 panel panel-default panel-primary">
+                <div class="panel-heading">Food Information</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <form class="form-group">
+                            <label for="inputDate">Date:</label>
+                            <input type="date" id="inputDate" class="form-control input-sm">
+                            <label for="selectMeal">Meal:</label>
+                            <select class="form-control input-sm" id="selectMeal">
+                                <option>Breakfast</option>
+                                <option>Lunch</option>
+                                <option>Supper</option>
+                                <option>Snack</option>
+                            </select>
+                            <label for="inputDescription">Description:</label>
+                            <input type="text" id="inputDescription" class="form-control input-sm">
+                            <label for="inputQuantity">Quantity:</label>
+                            <input type="text" id="inputQuantity" class="form-control input-sm">
+                            <label for="inputUnit">Unit:</label>
+                            <input type="text" id="inputUnit" class="form-control input-sm">
+                            <label for="inputCalories">Calories:</label>
+                            <input type="text" id="inputCalories" class="form-control input-sm">
+                            </br>
+                            <button id="saveButton" type="button" class="btn btn-primary col-md-offset-7">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-7 panel panel-default panel-primary">
+                <div class="panel-heading">Daily Summary</div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Meal</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Calories</th>
+                        </tr>
+                        </thead>
+                        <tbody id="summaryTableRows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="chart">
+            <h1>Chart Page</h1>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">
+            <h1>Settings Page</h1>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

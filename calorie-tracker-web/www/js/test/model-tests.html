@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Calorie Tracker Model Tests</title>
+    <link rel="stylesheet" href="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.css">
+    <script src="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.js"></script>
+    <script src="../node_modules/blueimp-md5/js/md5.js"></script>
+    <script src="../app/model.js"></script>
+    <script>
+        function largeMockUser(username) {
+
+            var user = model.createUser(username,"fakePassword");
+            var registrationInfo = user.addRegistrationInfo(new model.RegistrationInfo("Santa","Claus","Toy Town","North Pole","Arctic","hohoho@gmail.com"));
+
+            for (var d= 1; d < 31; d++) {
+
+                var dateString = model.getDate();
+                var dailyIntake = user.addDailyIntake(new model.DailyIntake(dateString,0,0,0));
+
+                for(var s=1; s<8; s++){
+                    dailyIntake.addServing(new model.Serving(s,"Breakfast","Cereal",1,"cup",250));
+                }
+            }
+            return user;
+        }
+
+        function mockUser(username) {
+
+            var user = model.createUser(username,"fakePassword");
+            var registrationInfo = user.addRegistrationInfo(new model.RegistrationInfo("Santa","Claus","Toy Town","North Pole","Arctic","hohoho@gmail.com"));
+            var dailyIntake = user.addDailyIntake(new model.DailyIntake(model.getDate(),0,0,0));
+            dailyIntake.addServing(new model.Serving(1,"Breakfast","Cereal",1,"cup",250));
+
+            return user;
+        }
+
+        QUnit.testStart(function( details ) {
+            model.clearAll();
+        });
+
+        QUnit.testDone(function( details ) {
+            model.clearAll();
+        });
+
+        QUnit.test("addDailyIntake_ProvideThreeDailyIntakes_ShouldReturnThree", function(assert) {
+            var user = model.createUser("user1","fakePassword");
+            user.addDailyIntake(new model.DailyIntake("2016-01-01",1,2,3));
+            user.addDailyIntake(new model.DailyIntake("2015-11-01",1,2,3));
+            user.addDailyIntake(new model.DailyIntake("2015-12-01",1,2,3));
+
+            assert.ok(user.dailyIntakes.length == 3);
+        });
+
+        QUnit.test("userLoadTest_ProvideLargeUserObject_ShouldStoreOk", function(assert){
+
+            var user1 = largeMockUser("user1");
+            model.addUser(user1);
+
+            var returnedUser = model.getUserByUsername("user1");
+
+            assert.ok(returnedUser != null);
+            assert.ok(returnedUser.username == "user1")
+
+        });
+
+        QUnit.test("getUserByUsername_ProvideMultipleUserObjects_ShouldReturnUser",function(assert){
+
+            var user1 = mockUser("user1");
+            model.addUser(user1);
+            var user2 = mockUser("user2");
+            model.addUser(user2);
+            var user3 = mockUser("user3");
+            model.addUser(user3);
+
+            var returnedUser = model.getUserByUsername("user2");
+
+            assert.ok(returnedUser != null);
+            assert.ok(returnedUser.username == "user2")
+        });
+
+        QUnit.test("addRegistrationInfo_ProvideInfo_ShouldBeAbleToAddToUser", function(assert){
+
+           var user = mockUser("user1");
+            user.addRegistrationInfo(new model.RegistrationInfo('firstName','lastName','NoNameCity','Alberta','Canada','firstName@emailcompany.com'));
+
+            assert.ok(user.registrationInfo != null);
+        });
+
+        QUnit.test("checkDateFormat_ProvideExceptedDateFormat_ShouldPassCheck", function(assert){
+
+            var checkResult = model.checkDateFormat("2015-12-12");
+
+            assert.ok(checkResult.code == 1)
+        });
+
+        QUnit.test("checkDateFormat_ProvideIncorrectMonth_ShouldFailCheck", function(assert){
+
+            var checkResult = model.checkDateFormat("2015-13-12");
+
+            assert.ok(checkResult.code == 0)
+        });
+
+        QUnit.test("checkDateFormat_ProvideIncorrectDay_ShouldFailCheck", function(assert){
+
+            var checkResult = model.checkDateFormat("2015-12-33");
+
+            assert.ok(checkResult.code == 0)
+        });
+
+        QUnit.test("calculate_ProvideServings_ShouldReturnCorrectTotals", function(assert) {
+
+            var user = model.createUser("user1","fakePassword");
+            var dailyIntake = user.addDailyIntake(new model.DailyIntake(model.getDate(),0,0,0));
+            dailyIntake.addServing(new model.Serving(1,"Breakfast","Cereal",1,"cup",250));
+            dailyIntake.addServing(new model.Serving(2,"Lunch","Sandwich",1,"",500));
+            dailyIntake.addServing(new model.Serving(3,"Dinner","Pizza",3,"pieces",600));
+            var returnedDailyIntake = dailyIntake.calculate();
+
+            assert.ok(returnedDailyIntake.totalCalories == 1350);
+            assert.ok(returnedDailyIntake.servings.length == 3);
+
+        });
+
+       /* QUnit.test("findDailyIntake_ProvideIncorrectDateString_ShouldThrowError", function(assert) {
+            assert.throws(function() {model.findDailyIntake("2015-12-03")}, "findDailyIntake: dateString format should be yyyy-mm-dd");
+        });
+
+        QUnit.test("findDailyIntake_ProvideMultipleDailyIntakes_ShouldOnlyReturnOne", function(assert) {
+            var user = model.createUser("user1","fakePassword");
+            var date = model.getDate();
+            user.addDailyIntake(new model.DailyIntake("2016-01-01",1,2,3));
+            user.addDailyIntake(new model.DailyIntake("2015-11-01",1,2,3));
+            var dailyIntake = user.addDailyIntake(new model.DailyIntake(date,1,2,3));
+            var dailyIntakeResult =  user.findDailyIntake(date);
+
+            assert.ok(user.dailyIntakes.length == 3);
+            assert.ok(dailyIntakeResult.object != null);
+            assert.ok(dailyIntakeResult.object.date == date);
+            assert.ok(dailyIntakeResult.object.totalCalories == 1);
+            assert.ok(dailyIntakeResult.object.calorieLimit == 2);
+            assert.ok(dailyIntakeResult.object.calorieDiff == 3);
+        });
+
+        QUnit.test("findDailyIntake_ProvideDailyIntakeForToday_ShouldReturnSameDailyIntake", function(assert){
+
+            var user = model.createUser("user1","fakePassword");
+            var date = model.getDate();
+            var dailyIntake = user.addDailyIntake(new model.DailyIntake(date,1,2,3));
+            var dailyIntakeResult =  user.findDailyIntake(date);
+
+            assert.ok(user.dailyIntakes.length == 1);
+            assert.ok(dailyIntakeResult.object != null);
+            assert.ok(dailyIntakeResult.object.date == date);
+            assert.ok(dailyIntakeResult.object.totalCalories == 1);
+            assert.ok(dailyIntakeResult.object.calorieLimit == 2);
+            assert.ok(dailyIntakeResult.object.calorieDiff == 3);
+        });*/
+
+        QUnit.test("getDate_ProvideInvalidDate_ShouldReturnError", function(assert) {
+
+            var checkResult = model.checkDateFormat("2016-1-22");
+            assert.ok(checkResult.code == 0);
+        });
+
+        QUnit.test("getDate_ShouldReturnCorrectDateFormat", function(assert){
+           var date = model.getDate();
+            var checkResult = model.checkDateFormat(date);
+            assert.ok(checkResult.code == 1);
+        });
+
+        QUnit.test("addUser_ProvideUsersWithSameName_ShouldReturnOneUser", function(assert) {
+
+            var user1 = mockUser("user");
+            var user2 = mockUser("user");
+            model.addUser(user1);
+            model.addUser(user2);
+            var users = model.getUsers();
+
+            assert.ok(users.length == 1);
+
+        });
+
+        QUnit.test("getUsers_ProvideThreeUserObjects_ShouldReturnThreeUsers", function(assert) {
+
+            var user1 = mockUser("user1");
+            var user2 = mockUser("user2");
+            var user3 = mockUser("user3");
+            model.addUser(user1);
+            model.addUser(user2);
+            model.addUser(user3);
+            var users = model.getUsers();
+
+            assert.ok(users.length == 3);
+            assert.ok(users[0].registrationInfo != null)
+
+        });
+
+        QUnit.test("createUser_ShouldReturnInstanceOfUser", function(assert) {
+
+            var user = model.createUser("fakeUser","fakePassword");
+
+            assert.ok(user != null);
+            assert.deepEqual(user.username,"fakeUser");
+            assert.deepEqual(user.password,undefined);
+            assert.ok(user.md5hash != undefined)
+        });
+
+        QUnit.test("addUser_ProvideExecpectedUserObject_ShouldReturnOk", function( assert ) {
+
+            var user = mockUser("user1");
+            var id = model.addUser(user);
+            var returnedUser = model.getUser(id);
+
+            assert.deepEqual(returnedUser.username,"user1");
+
+        });
+
+        QUnit.test("addUser_ProvideUndefinedPassword_ShouldReturnError", function(assert) {
+
+            assert.throws(function() {model.createUser("fakeUser", undefined)}, "createUser: password is undefined");
+        });
+
+        QUnit.test("addUser_ProvideUndefinedUsername_ShouldReturnError", function(assert) {
+
+            assert.throws(function() {model.createUser(undefined, "fakePassword")}, "createUser: username is undefined");
+        });
+
+        QUnit.test("addUser_ProvideNullPassword_ShouldReturnError", function(assert) {
+
+            assert.throws(function() {model.createUser("fakeUser", null)}, "createUser: password is undefined");
+        });
+
+        QUnit.test("addUser_ProvideNullUsername_ShouldReturnError", function(assert) {
+
+            assert.throws(function() {model.createUser(null, "fakePassword")}, "createUser: username is undefined");
+        });
+
+        QUnit.test("getUser_ProvideUndefinedUsername_ShouldReturnError", function(assert) {
+
+            assert.throws(function() {model.getUser(undefined)}, "getUser: username is undefined");
+        });
+
+        QUnit.test("getUser_ProvideUserThatDoesNotExist_ShouldReturnNullUser", function(assert) {
+
+            var user = model.getUser("fakeUser");
+
+            assert.equal(user,null)
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+<div id="qunit"></div>
+</body>
+</html>

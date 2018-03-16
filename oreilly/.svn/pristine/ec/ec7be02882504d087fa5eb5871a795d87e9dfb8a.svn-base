@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Foreach Array Functions </title>
+    <script>
+        var zeros = [0,0,0,0,0,0,0,0,0,0];
+
+        function forEach(array,f) {
+            for(var i = 0; i < array.length; i++) {
+                f(array[i],i,array);
+            }
+        }
+
+        function map(a,f){
+            var newArray = [];
+            for (var i = 0; i< a.length; i++) {
+                newArray.push(f(a[i]));
+            }
+            return newArray;
+        }
+
+        /*
+         Task:
+            Write a function, showArray(), that displays the value of each item in the array in the console, showing the index and the value at that index.
+         */
+        function showArray(value,index,theArray) {
+            console.log("array [" + index + "] = " + value );
+        }
+
+        /*
+         Task:
+            Write a function, makeArrayRandom(), that generates a random number for each element of the array.
+         */
+        function makeArrayRandom(value,index,theArray) {
+            theArray[index] = Math.floor(Math.random() * 100);
+        }
+
+        /*
+          Task:
+            Write a function, isNextGreater() that compares the value at each index of the array (except the last one) to the value at the next index; if the value at the next index is greater, change the value at the index to -1.
+         */
+        function isNextGreater(value,index,theArray) {
+
+            //Created 2 variables to make the code readable and easy to understand.
+            var nextValue = theArray[index+1];
+            var currentValue = value;
+            //Check if the nextValue is greater than the currentValue.
+            if(nextValue > currentValue) {
+                theArray[index] = -1;
+            }
+
+        }
+
+        /*
+         Task:
+            Use the map() method (or the map() function we wrote in the lesson) to create a copy of the zeros array, in copyOfZeros.
+         Comment:
+            The map function creates a new array and loops over the zeros array. To copy the array I only have to return the provided value.
+         */
+        function copyOfZeros(value) {
+            return value;
+        }
+
+        /*
+         Instructions:
+            Show that each of your functions works as it should by using your forEach() function to:
+         Task:
+            Display the zeros array with forEach(), using showArray().
+         */
+        console.log("Foreach");
+        console.log("Display the array");
+        forEach(zeros,showArray);
+
+
+        /*
+         Task:
+            Call forEach() with the makeArrayRandom() function to change the zeros array to random numbers.
+         */
+        console.log("Random array: ");
+        forEach(zeros,makeArrayRandom);
+        forEach(zeros,showArray);
+
+        /*
+         Task:
+            Copy the zeros array to zerosCopy array
+        */
+        console.log("copyOfZeros array: ");
+        var zerosCopy = map(zeros,copyOfZeros);
+        forEach(zerosCopy,showArray);
+
+
+        /*
+         Task:
+            Call forEach() with the isNextGreater() function to change the copyOfZeros array. The resulting values in copyOfZeros show which values in zeros are less than their neighbor values to the right.
+         */
+        console.log("Is next greater: ");
+        console.log("Zeros array: ");
+        forEach(zerosCopy,isNextGreater);
+        forEach(zerosCopy,showArray);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

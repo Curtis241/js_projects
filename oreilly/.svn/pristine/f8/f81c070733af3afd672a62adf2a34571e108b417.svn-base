@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+    <title> Bug </title>
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+        }
+        div#container {
+            position: relative;
+        }
+        div#bug {
+            position: absolute;
+            width: 100px;
+            height: 76px;
+            -webkit-transition: -webkit-transform 2s;
+            -moz-transition: -moz-transform 2s;
+            -o-transition: -o-transform 2s;
+            transition: transform 2s;
+            background-image: url("ladybug.png");
+        }
+        .up {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+        .down {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+        .right {
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+        .left {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+    </style>
+    <script>
+
+        // your code here
+        function Bug(containerName) {
+            var container = getContainer(containerName);
+            var startWidth = (window.innerWidth / 2);
+            var startHeight = (window.innerHeight / 2);
+            var width = startWidth;
+            var height = startHeight;
+
+            this.moveBug = function(keyCode) {
+                var incrementPixels = 25;
+                createBug(containerName);
+                console.log("moveBug: entered keyCode " + keyCode);
+
+                if(parseInt(keyCode) == 104) {
+                    displayPosition("left");
+                    width -= incrementPixels;
+                    setBugPosition("left");
+                }
+
+                if(parseInt(keyCode) == 108) {
+                    displayPosition("right");
+                    width += incrementPixels;
+                    setBugPosition("right");
+                }
+
+                if(parseInt(keyCode) == 107) {
+                    displayPosition("top");
+                    height -= incrementPixels;
+                    setBugPosition("up");
+                }
+
+                if(parseInt(keyCode) == 106) {
+                    displayPosition("down");
+                    height += incrementPixels;
+                    setBugPosition("down");
+                }
+            };
+
+            function isOffScreen(margin) {
+                var margin = 25;
+                var leftMargin = margin;
+                var rightMargin = window.innerWidth - margin;
+                var topMargin = margin;
+                var bottomMargin = window.innerHeight - margin;
+
+                console.log("isOffScreen: width: " + width + ", height: " + height );
+
+                if(width < leftMargin) {
+                    console.log("isOffScreen: outside left margin " + leftMargin);
+                    return false;
+                }
+
+                if(height < topMargin) {
+                    console.log("isOffScreen: outside top margin " + topMargin);
+                    return false;
+                }
+
+                if(width > rightMargin) {
+                    console.log("isOffScreen: outside right margin " + rightMargin);
+                    return false;
+                }
+
+                if(height > bottomMargin) {
+                    console.log("isOffScreen: outside bottom margin " + bottomMargin);
+                    return false;
+                }
+
+                return true;
+            }
+
+            function createBug() {
+
+                if(!getBug()) {
+                    console.log("bugDiv does not exist");
+                    var newBugDiv = document.createElement("div");
+                    newBugDiv.setAttribute("id","bug");
+                    newBugDiv.setAttribute("name","bug");
+                    container.appendChild(newBugDiv);
+                } else {
+                    console.log("bugDiv already exists");
+                }
+            }
+
+            function getContainer(containerName) {
+                return document.getElementById(containerName);
+            }
+
+            function getBug() {
+                return document.getElementById("bug");
+            }
+
+            function setBugPosition(cssClass) {
+                if(isOffScreen()) {
+                    console.log("setBugPosition: position: " + cssClass + " :width " + width + " :height " + height);
+                    var bugDiv = getBug();
+                    bugDiv.setAttribute("class",cssClass);
+                    bugDiv.style.left = width + "px";
+                    bugDiv.style.top = height + "px";
+                }
+            }
+
+            function displayPosition(cssClass) {
+                var positionLabel = document.getElementById("position");
+                positionLabel.innerHTML = "Window: width: " + window.innerWidth + ", height: " + window.innerHeight + " Position: orientation: " + cssClass + " width: " + width + ", height: " + height;
+            }
+
+        }
+
+        window.onload = function() {
+            var bug = new Bug("container");
+
+            // j = 106 (down), k = 107 (up), h = 104 (left) , l = 108 (right)
+            document.onkeypress = function(e) {
+                bug.moveBug((typeof e.which == "number") ? e.which : e.keyCode);
+            }
+        };
+
+    </script>
+</head>
+<body>
+<div id="container"></div>
+<label id="position"></label>
+</body>
+</html>      

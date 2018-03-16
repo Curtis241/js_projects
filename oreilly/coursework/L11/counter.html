@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title> Counter </title>
+    <meta charset="utf-8">
+    <script>
+
+        function makeCounter() {
+            var count = 0;
+            return function() {
+                count = count + 1;
+                return count;
+            };
+        }
+
+        var count = makeCounter();
+        console.log("Counter: " + count());
+        console.log("Counter: " + count());
+        console.log("Counter: " + count());
+        console.log("Counter: " + count());
+        console.log("Counter: " + count());
+
+    </script>
+</head>
+<body>
+</body>
+</html> 

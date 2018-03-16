@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Calorie Tracker Model Tests</title>
+    <link rel="stylesheet" href="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.css">
+    <script src="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.js"></script>
+    <script src="../node_modules/blueimp-md5/js/md5.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../app/storage.js"></script>
+    <script>
+
+        QUnit.testStart(function( details ) {
+
+        });
+
+        QUnit.testDone(function( details ) {
+
+        });
+
+        QUnit.test("getUsers_ShouldReturnOk", function(assert) {
+            var users = storage.getUsers();
+
+            assert.ok(users != null)
+        });
+    </script>
+</head>
+<body>
+
+<div id="qunit"></div>
+</body>
+</html>

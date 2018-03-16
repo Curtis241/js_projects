@@ -1,0 +1,171 @@
+Objective 1:
+
+In this project, you're going to implement the forEach() function for arrays. Just like when we implemented map() in the lesson, you'll replicate the functionality of the forEach() array method. Your function will take two arguments: the array, and the function to act on the array.
+
+forEach() operates a little differently from map(). forEach() loops through the array, in order, and invokes the function you pass in once for each element in the array. However, unlike map(), forEach() doesn't create a new array; instead, it modifies the existing array. Arrays are objects, so if you pass an array to a function and then change it, you are changing the original array, just like with objects!
+
+The function you pass in, f, is invoked with three arguments:
+
+f(array[i], i, array)
+
+where array is the array you pass into forEach(), and i is the index. So, the first argument to f is the value at a specific index in the array, the second argument is the index, and the third argument is the array itself.
+
+f shouldn't return a value; if it does, that value should be ignored.
+
+As an example, let's look at how you'd use the built-in forEach() method to add one to each element of an array:
+
+var myArray = [1, 2, 3];
+function addOne(value, index, theArray) {
+    theArray[index] = value + 1;
+} 
+myArray.forEach(addOne);
+console.log(myArray);    
+
+The result is [2, 3, 4] displayed in the console.
+
+Remember, however, that your implementation of forEach() will take two arguments: the array and the function.
+
+Once you've written forEach(), your project should do the following:
+
+    Create an array of all zeros, named zeros (see skeleton code below).
+    Write a function, showArray(), that displays the value of each item in the array in the console, showing the index and the value at that index.
+    Write a function, makeArrayRandom(), that generates a random number for each element of the array.
+    Write a function, isNextGreater() that compares the value at each index of the array (except the last one) to the value at the next index; if the value at the next index is greater, change the value at the index to -1.
+    Use the map() method (or the map() function we wrote in the lesson) to create a copy of the zeros array, in copyOfZeros.
+    Show that each of your functions works as it should by using your forEach() function to:
+        Display the zeros array with forEach(), using showArray().
+        Call forEach() with the makeArrayRandom() function to change the zeros array to random numbers.
+        Call forEach() with the isNextGreater() function to change the copyOfZeros array. The resulting values in copyOfZeros show which values in zeros are less than their neighbor values to the right.
+
+The output displayed in the console should look similar to the following (although of course your "random" values will be different):
+
+Foreach 
+Display the array
+array[0] = 0 
+array[1] = 0
+array[2] = 0 
+array[3] = 0 
+Random array:
+array[0] = 0 
+array[1] = 1 
+array[2] = 0 
+array[3] = 3 
+copyOfZeros array: 
+array[0] = 0
+array[1] = 1
+array[2] = 0
+array[3] = 3
+Is next greater:
+Zeros array:
+array[0] = -1 
+array[1] = 1 
+array[2] = -1 
+array[3] = 3           
+
+Hint: to generate a random number, you can use the following code:
+
+var randomNum = Math.floor(Math.random() * maxSize);          
+
+where maxSize is a number limiting the maximum value for the result, so the randomNum will be between 0 and maxSize.
+
+Here is skeleton code you can use to get started:
+
+<!doctype html>
+<html>
+<head>
+  <title> Functions: forEach </title>
+  <meta charset="utf-8">
+  <script>
+
+    // the zeros array
+    var zeros = [0, 0, 0, 0];
+    
+    // your code here
+
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as foreach.html. Comment your code liberally! When the project is working to your satisfaction, hand in foreach.html
+
+Note that you are implementing a simplified version of forEach(), just like we did for map(), that works only on arrays, and doesn't need to do any error or type checking.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

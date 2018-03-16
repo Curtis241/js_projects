@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <title> Make an HTML list </title>
+    <meta charset="utf-8">
+    <script>
+
+        function makeList() {
+            var liElements = "";
+
+            var listType = arguments[0];
+
+            if(listType == "ol" || listType == "ul") {
+                var listItems = arguments[1];
+
+                for(var i=0;i<listItems.length;i++){
+                    var listItem = listItems[i];
+                    liElements += "<li>" + listItem + "</li>"
+                }
+
+                return "<" + listType + ">" + liElements + "</" + listType + ">";
+            }
+
+            return "List must be an ordered (ol) or unordered list (ul)";
+        }
+
+        window.onload = function() {
+            var list = makeList("il", ["apples", "oranges", "pears"]);
+            var theListDiv = document.getElementById("theList");
+            theListDiv.innerHTML = list;
+        }
+    </script>
+</head>
+<body>
+<div id="theList"></div>
+</body>
+</html>   

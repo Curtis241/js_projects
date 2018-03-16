@@ -1,0 +1,189 @@
+Objective 1:
+
+In this project, you'll build an image preview JavaScript widget. Use the Module Pattern to hide all of the internal implementation details of the previewer,
+and expose only the global variable Preview (an object) and one public method, init() to initialize the previewer.
+
+The previewer should look for all links (that is, <a> elements) in your code that have the attribute data-preview (for an example, see the HTML below).
+These links specify the URL to the image, as well as a unique name for the image that you can use in your code to initialize and generate the previews.
+When you click on the link, you'll see the image preview. You can build your image previewer to look any way you like, but the functionality should
+include the following features:
+
+    Clicking on a link to open the image preview.
+    The image preview should appear in the same page (that is, you should not navigate to a new page).
+    No links should be clickable while the image is showing.
+    Provide a way to close the image preview, so you can get back to the main part of the page and click on another image link.
+        This could be a button or simply an action (like clicking on the image preview).
+
+Here are a couple of screenshots showing how your image previewer could work:
+
+After loading the page:
+
+After clicking on an image:
+
+Create three new files: preview.html for the HTML, preview.js for the JavaScript, and preview.css for the CSS. Use the following code to get started:
+
+The HTML:
+
+<!doctype html>
+<html>
+<head>
+  <title> Image preview  </title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="preview.css">
+  <script src="preview.js"></script>
+  <script>
+   
+    window.onload = function() {
+        Preview.init();
+    };
+    
+  </script>
+</head>
+<body>
+  <ul>
+    <li><a href="https://courses.oreillyschool.com/advancedjavascript/homework/images/image1.jpg"
+                data-preview="image1">Mt. Rainier, 1</a></li>
+    <li><a href="https://courses.oreillyschool.com/advancedjavascript/homework/images/image2.jpg"
+                data-preview="image2">Mt. Rainier, 2</a></li>
+    <li><a href="https://courses.oreillyschool.com/advancedjavascript/homework/images/image3.jpg"
+                data-preview="image3">Mt. Rainier, 3</a></li>
+  </ul>
+</body>
+</html>        
+
+Save the file in your AdvJS/ folder as preview.html. Notice that we've added three links for previewing images.
+Each link has an "href" attribute that points to an image to preview, and the attribute "data-preview" with a unique name to identify the image for preview.
+Feel free to use these same images in your solution, or use your own!
+
+The CSS:
+
+.previewOverlay {
+    position: absolute;
+    display: none;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+}
+.previewOverlay img {
+    position: relative;
+    border: 20px solid white;
+    border-radius: 10px;
+    top: 50px;
+    left: 50px;
+}
+.close {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #fdfdfd;
+    font-size: 50px;
+    text-shadow: 0px 0px 5px black;
+}
+.close:after {
+    content: "\2717";
+}
+.close:hover {
+    color: orange;
+}          
+
+Save the file as preview.css in your AdvJS/ folder. You can use the class "close" to style a close button (for example, if you create a <span>
+element and set the class to "close," you'll get a button as shown in our screenshots above). You can also use the "previewOverlay" class to style
+the preview <div> if you like. But feel free to create your own CSS or add on to ours above if needed.
+
+The JavaScript for the file preview.js is up to you!
+
+When the project is working to your satisfaction, turn in the three files preview.html, preview.css, and preview.js.
+Be sure to comment your code liberally and test thoroughly.
+
+A few hints:
+
+    Don't worry about making the previewer really fancy; a very basic image preview is fine.
+
+    Most of the JavaScript to manipulate the DOM needed in this project we've used in earlier lessons, so you can look back at previous
+    lessons to remember how to do things like add an attribute to an element (with setAttribute), create a new element (with document.createElement()),
+    select an element (with document.getElementById() or document.querySelector()), or add a new element to the DOM (with appendChild()).
+    (Check online documentation for more details).
+
+    To prevent a link from taking you to a new page, you can use the preventDefault() method of the event object that's passed to the click handler for the link.
+    (Check online documentation for more details).
+
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

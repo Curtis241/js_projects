@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title> setTimeout </title>
+    <meta charset="utf-8">
+    <script>
+
+        // Task: display a counter once every 10 seconds. The console should show the numbers 1 - 10.
+        var count = 0;
+
+        //Recursive method.
+        function displayCount(count) {
+
+            //Base case. Recursive counter stops when the count = 11;
+            if (count == 11) {
+                console.log("Stopping timer");
+                return;
+            } else {
+                //Display the count
+                console.log(count);
+                //Increment the count by 1
+                count++;
+                //setTimeout method controls the wait time and calls displayCount every 10 seconds.
+                var timer = setTimeout(function() {
+                    displayCount(count);
+                },10000);
+            }
+        };
+
+        window.onload = function (){
+            console.log("Starting timer - 10 sec interval");
+            displayCount(1);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>  

@@ -1,0 +1,124 @@
+Objective 1:
+
+Look at the counter module we built in a previous lesson:
+
+<!doctype html>
+<html>
+<head>
+  <title> Counter  </title>
+  <meta charset="utf-8">
+  <script>
+    var counterModule = (function(initialValue) {
+        var counter = initialValue;
+
+        return {
+            increment: function() {
+                counter++;
+            },
+            decrement: function() {
+                counter--;
+            },
+            reset: function() {
+                counter = 0;
+            },
+            getValue: function() {
+                return counter;
+            }
+        };
+    })(0);
+
+    window.onload = function() {
+        counterModule.increment();
+        counterModule.increment();
+        counterModule.decrement();
+        counterModule.increment();
+        console.log(counterModule.getValue());
+        counterModule.reset();
+    }; 
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Modify the file so that the code is run in strict mode. In addition, add code to make sure that none of the public properties in the counter can be modified. Make sure your counter still works, and also verify that if you try to modify any of the public properties, you are not able to.
+
+Save the file in your AdvJS/ folder as counter2.html, and turn in the file when your code is working to your satisfaction. Be sure to comment your code and test thoroughly.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

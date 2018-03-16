@@ -1,0 +1,57 @@
+Objective 1:
+Write an application to track your favorite links on the web. Use one object to hold all your favorites, as well as an object for each favorite item. Your application might look like this:
+
+See Favorites.png.
+
+
+Create a form to enter a new favorite, and a list below of the favorites you've added (in this example, we added two favorites). For each favorite, display the title, the link, a description, and tags. Instead of displaying the link separately from the title, you can also show just the title (if the user supplied one), but make it linkable using the URL the user supplied (as shown in the screenshot of our solution). Also display the favorites in the console log.
+
+Feel free to expand on this idea in creative ways! We've included some skeleton code below to get you started, but you can change it if you need to.
+
+Note: Your application does not need to save your favorites either locally or to the server (although feel free to add this capability if you're so inclined). Of course that means you'll lose the favorites whenever you reload the page, but that's okay for this project.
+
+Use objects for both the "all favorites" item and each new "favorite" item.
+The functionality to display the favorites (in the console and/or in the web page) should be included as methods in the objects you use.
+Describe (in code comments, or separately) the decisions you made as you wrote this program. What kind of constructor did you use for the various objects used in the program, and why? How are you initializing object property values? What properties did you choose for each object and why?
+Create a new file in your /AdvJS folder, faves.html. You can use the following skeleton code as a starting point if you'd like:
+
+<!doctype html>
+<html>
+<head>
+  <title> Advanced JavaScript Project: Favorites and Tags  </title>
+  <meta charset="utf-8">
+  <style>
+    body {
+        font-family: Helvetica, Ariel, sans-serif;
+    }
+    form {
+        display: table;
+        border-spacing: 5px;
+    }
+    form p {
+        display: table-row;
+    }
+    form label {
+        display: table-cell;
+        text-align: right;
+    }
+    form input {
+        display: table-cell;
+    }
+    span.comment {
+        font-size: 80%;
+        color: #777777;
+    }
+    span.tags {
+        font-size: 80%;
+        color: rgb(48, 99, 170);
+    }
+  </style>
+  <script>
+  
+    // your code here
+            
+            // Display favorites
+            
+      
+When the project is working to your satisfaction, hand in faves.html.

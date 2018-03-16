@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <title> JavaScript Environment: Project </title>
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        #canvas {
+            background-color: yellow;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+        .pen {
+            position: absolute;
+            background-color: lightblue;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+
+
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            canvas.onmousemove = Drawing.mousemove;
+            canvas.onmousedown = Drawing.mousedown;
+            canvas.onmouseup = Drawing.mouseup;
+        };
+
+        var Drawing = (function (document) {
+            var isDrawing = false;
+
+            function MouseMove(e) {
+                //When mouse moves add a pixel to the canvas.
+                if(isDrawing == true) {
+                    var canvas = document.getElementById("canvas");
+                    var pixel = document.createElement("div");
+                    pixel.setAttribute("class","pen");
+                    pixel.style.left = String(e.clientX) + "px";
+                    pixel.style.top = String(e.clientY) + "px";
+                    canvas.appendChild(pixel);
+                }
+
+            }
+
+            function MouseDown(e) {
+                console.log("MouseDown: called");
+
+                //Event is also called when the right mouse button is pressed and released.
+                //The left-button is button=0 and excludes the right button which is button=2.
+                if(e.button == 0) {
+                    //Set flag to allow drawing to start.
+                    isDrawing = true;
+                    //The preventDefault method call is needed to allow MouseUp to be called. When it is called
+                    //it cancels the event if it can, preventing the issue with the MouseUp event from not being called.
+                    //http://stackoverflow.com/questions/9506041/javascript-events-mouseup-not-firing-after-mousemove
+                    e.preventDefault();
+                }
+            }
+
+            function MouseUp(e) {
+                console.log("MouseUp: called");
+
+                //Set flag to stop drawing.
+                isDrawing = false;
+
+            }
+
+            return {
+                    mousemove: MouseMove,
+                    mouseup: MouseUp,
+                    mousedown: MouseDown
+            }
+        })(document);
+
+    </script>
+</head>
+<body>
+<div id="canvas" draggable="false">
+</div>
+</body>
+</html>

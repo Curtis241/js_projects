@@ -1,0 +1,35 @@
+<section>
+    <div class="row-fluid">
+        <div class="span10 offset2">
+            <a class="btn btn-info btn-force-refresh pull-right" href="#"><i class="icon-refresh"></i> Refresh</a>
+        </div>
+        <div class="span12"></div>
+        <div class="offset3 span6 well well-large">
+            <!--pre data-bind="text: ko.toJSON($data, null, 2)"></pre-->
+                <ul class="nav nav-pills nav-stacked" data-bind="foreach: $root.series">
+                    <li data-bind="css: { active: isSelected() == true }, click: $parent.itemClicked"><a href="#" data-bind="text: name"></a></li>
+                </ul>
+                <div class="controls btn-group">
+                    <button data-bind="click: deleteButtonClicked, enable: enableDeleteButton" type="button" class="btn btn-info"><i class="icon-trash"></i> Delete</button>
+                    <button data-bind="click: saveButtonClicked, enable: enableSaveButton" class="btn btn-info"><i class="icon-save"></i> Save</button>
+                    <button data-bind="click: newButtonClicked, enable: enableNewButton" class="btn btn-info"><i class="icon-edit"></i> New</button>
+                </div>
+                <div class="offset3 span6"></div>
+                <!--pre data-bind="text: ko.toJSON($data, null, 2)"></pre-->
+                <div data-bind="with: $root.selectedItem">
+                    <input data-bind="value: name" type="text" class="controls" placeholder="Season Name"/>
+                     <input data-bind="value: seasons" type="text" class="controls" placeholder="Season Count"/>
+                   <div class="input-append date form_date" data-date="" data-date-format="yyyy-mm-dd">
+                        <input data-bind="value: startdate" size="16" type="text" class="controls" placeholder="Start Date" value=""/>
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                    <div class="input-append date form_date" data-date="" data-date-format="yyyy-mm-dd">
+                        <input data-bind="value: enddate" size="16" type="text" class="controls" placeholder="End Date" value=""/>
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>

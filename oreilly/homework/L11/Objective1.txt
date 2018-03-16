@@ -1,0 +1,113 @@
+Objective 1:
+
+Write a function, makeRandom(), that takes two arguments, min and max, and returns a new function that generates
+a random number between min and max. Your new function should create a closure over the variables min and max.
+
+Create a new file, random.html. You can use the following skeleton code as a starting point:
+
+<!doctype html>
+<html>
+<head>
+  <title> Closures project: making random number generators  </title>
+  <meta charset="utf-8">
+  <script>
+  
+    // your code here
+
+    var makeRandom100 = makeRandom(0, 100);
+    var x = makeRandom100();
+
+    console.log(x);
+
+    var makeRandom1000 = makeRandom(900, 1000);
+    var y = makeRandom1000();
+
+    console.log(y);
+    
+  </script>
+</head>
+<body>
+</body>
+</html>        
+
+Save the file in your /AdvJS folder as random.html. The first test result should be a random number between 0 and 100. The second test result should be a random number between 900 and 1000.When the project is working to your satisfaction, hand in random.html.
+
+Hint: To create a random number between two values, use the expression Math.floor((Math.random() * (max-min)) + min);.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <title> Functions: Returning a function from a function </title>
+    <meta charset="utf-8">
+    <style>
+        html, body, div#container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        div#container1, div#container2 {
+            position: relative;
+            height: 300px;
+            border: 1px solid black;
+        }
+        .red {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+        }
+        .blue {
+            position: absolute;
+            width: 175px;
+            height: 175px;
+            background-color: lightblue;
+        }
+    </style>
+    <script>
+
+
+        window.onload = function() {
+
+            var assignCSSClass = addDivTo("container1");
+            assignCSSClass("red");
+
+            var assignCSSClass = addDivTo("container2");
+            assignCSSClass("blue");
+
+        };
+
+        /*
+         The function will create the <div>,
+         give it the class, position the <div> randomly in the correct container <div>,
+         append the new <div> to the container <div> and return the new <div>.
+
+         Create a new element with document.createElement("div").
+         Add a div to a container div using appendChild().
+         Create a random position using Math.random() and Math.floor():
+         newDiv.style.left = Math.floor(Math.random() * (div.offsetWidth - 175)) + "px";
+         newDiv.style.top = Math.floor(Math.random() * (div.offsetHeight - 175)) + "px";
+         where div is a container <div>.
+         */
+        function addDivTo(containerName) {
+            return function (cssClass) {
+                //Get the container
+                var containerDiv = document.getElementById(containerName);
+
+                //Create the div element.
+                var div = document.createElement("div");
+
+                //Add the css class
+                div.setAttribute("class",cssClass);
+
+                //Add the position
+                div.style.left = Math.floor(Math.random() * (containerDiv.offsetWidth - 175)) + "px";
+                div.style.top = Math.floor(Math.random() * (containerDiv.offsetHeight - 175)) + "px";
+
+                //Append it to the containerDiv
+                containerDiv.appendChild(div);
+
+                return containerDiv;
+
+            };
+        }
+
+    </script>
+</head>
+<body>
+<div id="container1"></div>
+<div id="container2"></div>
+</body>
+</html>        

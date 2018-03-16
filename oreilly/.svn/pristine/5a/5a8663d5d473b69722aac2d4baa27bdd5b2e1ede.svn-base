@@ -1,0 +1,139 @@
+Objective 1:
+
+In this project, you'll research and experiment with three events: mouseup, mousedown, and mousemove. The result is a simple drawing program that adds a new pen dot to the page as you drag your mouse over the canvas. We are using a <div> for the drawing canvas, and a <div> for each pen dot we add to the page as you draw. The result should look something like this:
+
+You can start with this code:
+
+<!doctype html>
+<html>
+<head>
+  <title> JavaScript Environment: Project </title>
+  <meta charset="utf-8">
+  <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    #canvas {
+        background-color: yellow;
+        width: 100%;
+        height: 100%;
+    }
+    .pen {
+        position: absolute;
+        background-color: lightblue;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+    }
+  </style>
+  <script>       
+    window.onload = function() {
+        // your code here
+    };
+  </script>
+</head>
+<body>
+  <div id="canvas"></div>
+</body>
+</html>        
+
+To make this work, you'll need to research the three types of events: mouseup, mousedown, and mousemove. What properties do you need to set, and on which elements,
+to create event handlers? You'll also need to research the Event object. This object is passed to event handlers, and for mouse events, includes information
+about the position of the mouse in the window (event.clientX and event.clientY).
+
+To make the pen marks, you'll create a new <div> element and style it with the "pen" class (shown above in the CSS). This will create a blue dot that's 10px by 10px,
+in the shape of a circle. Remember, you can use the style property of the <div> object to set the top and left positions of each new <div> you add to the page.
+You'll want to add each new <div> at the current position of the mouse. (Hint: don't forget to turn the position into a string and add the string "px" at the end
+for it to work!).
+
+As you complete the project, think about the various events in the page and how they work. You should end up with four event handlers: a load handler (for window),
+a mousedown handler, a mouseup handler, and a mousemove handler. Can you see how these events are handled during the second phase (the event loop phase) of the
+execution of your JavaScript?
+
+Save the file in your /AdvJS folder as drawing.html. Comment your code liberally! When the project is working to your satisfaction, hand in drawing.html.
+
+Bonus: Can you structure your code so that no new global variables are added to the global scope?
+
+Note: Drawing by adding <div> elements to the page is not a particularly efficient way to implement a drawing program in a web page now that we have
+the <canvas> element. So we don't recommend this approach to a drawing program, but it's a simple way to get the effect we're looking for, and to demonstrate events.
+Instructions:
+
+Select each file you need to hand in from Your Files on the left and drop it on the Drop Here icon on the right. If you drag and drop the wrong file or folder, simply select it by clicking it in the Handin tree on the right and click Remove. The number of items you are expected to hand in is displayed above the HandIn tree. You may then enter any comments you might have in the Comments box and then submit your files for review by clicking the Hand In button.
+
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+0 of 1 expected items
+	
+
+Comments
+
+How long did it take you to complete this objective?
+Hours Minutes
+	
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+ 
+ 
+		
+ 
+ 
+	
+ 
+ 
+		
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+

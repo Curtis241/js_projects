@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title> Closures and a Square </title>
+    <meta charset="utf-8">
+    <style>
+        div {
+            position: relative;
+            background-color: red;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+        function Square(size) {
+            this.getSize = function() {
+                return size;
+            };
+        }
+
+        window.onload = function() {
+
+            var square = new Square(200);
+
+            var div = document.getElementById("theDiv");
+            div.style.width = square.getSize() + "px";
+            div.style.height = square.getSize() + "px";
+        };
+
+    </script>
+</head>
+<body>
+<div id="theDiv"></div>
+</body>
+</html>         

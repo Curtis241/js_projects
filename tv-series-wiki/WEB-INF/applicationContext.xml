@@ -1,0 +1,93 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+	<context:annotation-config />
+	<context:component-scan base-package="org.sakila" />
+		
+	<context:property-placeholder location="WEB-INF/error.properties"/>
+	<context:property-placeholder location="WEB-INF/app.properties"/>
+		
+	<import resource="mybatis.xml"/>
+	
+	<bean id="abstractBaseService" class="org.sakila.ws.service.AbstractBaseService" abstract="true"/>
+	
+	<bean id="firstBilledCastService" parent="abstractBaseService" class="org.sakila.ws.service.FirstBilledCastService" init-method="initialize">
+		<property name="mapper" ref="firstBilledCastMapper" />
+		<property name="actorMapper" ref="actorMapper" />
+	</bean>
+	
+	<bean id="searchResultService" parent="abstractBaseService" class="org.sakila.ws.service.SearchResultService" init-method="initialize">
+		<property name="mapper" ref="searchResultMapper" />
+	</bean>
+		
+	<bean id="tagService" parent="abstractBaseService" class="org.sakila.ws.service.TagService" init-method="initialize">
+		<property name="mapper" ref="tagMapper" />
+		<property name="seriesMapper" ref="seriesMapper"/>
+	</bean>
+	
+	<bean id="ratingService" parent="abstractBaseService" class="org.sakila.ws.service.RatingService" init-method="initialize">
+		<property name="mapper" ref="ratingMapper" />
+	</bean>
+	
+	<bean id="genreService" parent="abstractBaseService" class="org.sakila.ws.service.GenreService" init-method="initialize">
+		<property name="mapper" ref="genreMapper" />
+	</bean>
+		
+	<bean id="actorService" parent="abstractBaseService" class="org.sakila.ws.service.ActorService" init-method="initialize">
+		<property name="mapper" ref="actorMapper" />
+		<property name="seriesMapper" ref="seriesMapper"/>
+	</bean>
+	
+	<bean id="directorService" parent="abstractBaseService" class="org.sakila.ws.service.DirectorService" init-method="initialize">
+		<property name="mapper" ref="directorMapper" />
+		<property name="seriesMapper" ref="seriesMapper"/>
+	</bean>
+	
+	<bean id="seriesService" parent="abstractBaseService" class="org.sakila.ws.service.SeriesService" init-method="initialize">
+		<property name="mapper" ref="seriesMapper" />
+	</bean>
+	
+	 <bean id="actorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.ActorMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	  <bean id="seriesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.SeriesMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="directorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.DirectorMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="genreMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.GenreMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="ratingMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.RatingMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="tagMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.TagMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="searchResultMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.SearchResultMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="firstBilledCastMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="org.sakila.ws.mapper.FirstBilledCastMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+</beans>

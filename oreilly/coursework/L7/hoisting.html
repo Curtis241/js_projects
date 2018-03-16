@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Hoisting </title>
+    <script>
+        var icecream = ["vanilla","chocolate","strawberry"];
+
+        function init() {
+            var flavorButton = document.getElementById("getFlavorButton");
+            flavorButton.onclick = checkFlavor;
+        }
+
+        //The first console.log should return Reference Error instead of undefined,
+        //but because of a quirk in JavaScript the var flavor property is hoisted
+        //or moved up from Line 21 to Line 18.
+        function checkFlavor() {
+            console.log(flavor);
+            if(icecream.length > 0) {
+                var div = document.getElementById("container");
+                var flavor = document.getElementById("flavor").value;
+                if(flavor){
+                    for(var i=0; i<icecream.length;i++) {
+                        if(icecream[i] == flavor) {
+                            var found = true;
+                            div.innerHTML = "We have " + flavor;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        div.innerHTML = "Sorry, we don't have " + flavor;
+                    }
+                }
+            }
+            console.log(flavor);
+        }
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <div id="container">Enter a flavor of ice cream you'd like: </div>
+    <form>
+        <input type="text" id="flavor">
+        <input type="button" id="getFlavorButton" value="Check flavor">
+    </form>
+</body>
+</html>
